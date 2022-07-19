@@ -7,11 +7,11 @@ MakeFiles generated from `#include`s
 includes and sources need to be in their own dirs
 
 --config, -c  : set config file
---inc, -i     : add include dir
---src, -s     : add source dir
---bin, -b     : set output dir
---obj, -o     : set output for objects
---lib, -l     : add lib
+--include, -i : add include dir
+--source, -s  : add source dir
+--binary, -b  : set output dir
+--object, -o  : set output for objects
+--library, -l : add lib
 --path, -p    : add to lib path
 --flag, -f    : add flag
 --name, -n    : set name to project

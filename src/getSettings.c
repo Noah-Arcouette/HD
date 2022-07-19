@@ -6,17 +6,15 @@
 
 /*
 --config, -c  : set config file
-
---inc
---src
---lib
+--include
+--source
+--binary
+--object
+--library
 --path
 --flag
-
---bin
---obj
 --name
---version
+
 */
 
 int getSettings (
@@ -32,7 +30,19 @@ int getSettings (
 		// string parameter
 		if (argv[i][0] == '-' && argv[i][1] == '-')
 		{
-
+			if (!strcmp(argv[i], "--version"))
+			{
+				#include "movef.c"
+					
+				settings->version = (char*)realloc(settings->version, (strlen(argv[i])+1)*sizeof(char));
+				strcpy(settings->version, argv[i]);
+				
+				printf("\x1b[32mVersion\x1b[39m      : %s\n", settings->version);
+			}
+			else
+			{
+				puts(argv[i]);
+			}
 		}
 		// char parameter
 		else if (argv[i][0] == '-')

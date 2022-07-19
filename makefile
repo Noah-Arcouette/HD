@@ -5,7 +5,7 @@ VER     = 1.0
 LIBS    = -lmacsv -lmsap -lmcolor
 
 all: ${OUT}
-	${OUT} -v 1.0 -n HD -o ./obj -b ./bin -f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 -p ./lib -l msap -l mcolor -l macsv -s ./src -i ./inc
+	${OUT} --version 1.0 --name HD --object ./obj --binary ./bin -f -g -f -Wall -f -Wextra -f -O2 --flag -std=gnu18 --path ./lib -l msap -l mcolor --library macsv --source ./src --include ./inc
 
 build: clean ${OUT}
 	strip -s ${OUT}
