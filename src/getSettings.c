@@ -9,7 +9,7 @@
 
 --inc, -i     : add include dir
 --src, -s     : add source dir
---lib, -l     : add lib
+--lib
 --path
 --flag
 
@@ -39,14 +39,14 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
-				// case 'l':
-				// 	#include "movef.c"
+				case 'l':
+					#include "movef.c"
 
-				// 	saPush(&settings->libs, argv[i]);
+					saPush(&settings->libs, argv[i]);
 
-				// 	printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libs.items[settings->libs.size-1]);
+					printf("\x1b[32mLibrary\x1b[39m      : %s\n", settings->libs.items[settings->libs.size-1]);
 
-				// 	break;
+					break;
 				case 'v':
 					#include "movef.c"
 					
