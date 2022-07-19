@@ -60,6 +60,24 @@ int getSettings (
 
 				printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libDirs.items[settings->libDirs.size-1]);
 			}
+			else if (!strcmp(argv[i], "--object"))
+			{
+				#include "movef.c"
+
+				settings->objDir = (char*)realloc(settings->objDir, (strlen(argv[i])+1)*sizeof(char));
+				strcpy(settings->objDir, argv[i]);
+				
+				printf("\x1b[32mObject Path\x1b[39m  : %s\n", settings->objDir);
+			}
+			else if (!strcmp(argv[i], "--binary"))
+			{
+				#include "movef.c"
+
+				settings->binDir = (char*)realloc(settings->binDir, (strlen(argv[i])+1)*sizeof(char));
+				strcpy(settings->binDir, argv[i]);
+				
+				printf("\x1b[32mBinary Path\x1b[39m  : %s\n", settings->binDir);
+			}
 			else if (!strcmp(argv[i], "--library"))
 			{
 				#include "movef.c"
