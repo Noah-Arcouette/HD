@@ -8,7 +8,7 @@
 --config, -c  : set config file
 
 --inc, -i     : add include dir
---src, -s     : add source dir
+--src
 --lib
 --path
 --flag
@@ -39,6 +39,14 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
+				case 's':
+					#include "movef.c"
+
+					saPush(&settings->srcDirs, argv[i]);
+
+					printf("\x1b[32mSource Path\x1b[39m  : %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
+
+					break;
 				case 'l':
 					#include "movef.c"
 
