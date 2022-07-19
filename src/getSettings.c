@@ -6,11 +6,6 @@
 
 /*
 --config, -c  : set config file
---include
---source
---binary
---object
-
 */
 
 int getSettings (
@@ -34,6 +29,22 @@ int getSettings (
 				strcpy(settings->version, argv[i]);
 				
 				printf("\x1b[32mVersion\x1b[39m      : %s\n", settings->version);
+			}
+			else if (!strcmp(argv[i], "--include"))
+			{
+				#include "movef.c"
+
+				saPush(&settings->incDirs, argv[i]);
+
+				printf("\x1b[32mInclude Path\x1b[39m : %s\n", settings->incDirs.items[settings->incDirs.size-1]);
+			}
+			else if (!strcmp(argv[i], "--source"))
+			{
+				#include "movef.c"
+
+				saPush(&settings->srcDirs, argv[i]);
+
+				printf("\x1b[32mSource Path\x1b[39m  : %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
 			}
 			else if (!strcmp(argv[i], "--name"))
 			{
