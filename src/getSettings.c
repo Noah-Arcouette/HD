@@ -7,7 +7,7 @@
 /*
 --config, -c  : set config file
 
---inc, -i     : add include dir
+--inc
 --src
 --lib
 --path
@@ -39,6 +39,14 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
+				case 'i':
+					#include "movef.c"
+
+					saPush(&settings->incDirs, argv[i]);
+
+					printf("\x1b[32mInclude Path\x1b[39m : %s\n", settings->incDirs.items[settings->incDirs.size-1]);
+
+					break;
 				case 's':
 					#include "movef.c"
 
