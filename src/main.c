@@ -4,20 +4,60 @@
 #include <stdlib.h>
 #include <msap.h>
 #include <string.h>
-#include "getFiles.h"
+#include "structures.h"
+#include "functions.h"
+#include "info.h"
 
-int main ()
+int main (int argc, char **argv)
 {
-	sa files = { NULL, 0 };
+	printf(
+"\x1b[1;35mHD\x1b[39m V" VER "-" REV "\n\
+Under the \x1b[32mMimik License 1.0\n\
+Copyright (c) 2022 Noah Arcouette\n\
+\x1b[39mThis is free and open source software;\n\
+see the \x1b[32mMimik License 1.0\x1b[39m for copying conditions.\n\
+The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b[0m  ┃\n\
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n\n"
+);
 
-	getFiles("./test.c", &files);
+	// set empty settings
+	struct hd_settings settings;
+	settings.srcDirs.items = NULL;
+	settings.srcDirs.size  = 0;
+	settings.incDirs.items = NULL;
+	settings.incDirs.size  = 0;
+	settings.libDirs.items = NULL;
+	settings.libDirs.size  = 0;
+	settings.libs.items = NULL;
+	settings.libs.size  = 0;
+	settings.flags.items = NULL;
+	settings.flags.size  = 0;
 
-	for (register size_t i = 0; i<files.size; i++)
+	settings.binDir  = NULL;
+	settings.objDir  = NULL;
+
+	settings.name    = NULL;
+	settings.version = NULL;
+
+	printf("\x1b[1;35mReading Settings\x1b[0m  ┃\n━━━━━━━━━━━━━━━━━━┛\n");
+
+	// read command line parameters into a settings structure
+	if (getSettings(&settings, argc, argv))
 	{
-		puts(files.items[i]);
+		printf("ERROR");
 	}
 
-	saFree(files);
+	// free settings
+	saFree(settings.srcDirs);
+	saFree(settings.incDirs);
+	saFree(settings.libDirs);
+	saFree(settings.libs);
+	saFree(settings.flags);
+
+	free(settings.binDir);
+	free(settings.objDir);
+	free(settings.name);
+	free(settings.version);
 
 	return 0;
 }

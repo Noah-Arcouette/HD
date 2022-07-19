@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <msap.h>
-#include "getFiles.h"
+#include "functions.h"
 
 void getFiles (char *file, sa *files)
 {
