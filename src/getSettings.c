@@ -13,7 +13,6 @@
 --library
 --path
 --flag
---name
 
 */
 
@@ -38,6 +37,15 @@ int getSettings (
 				strcpy(settings->version, argv[i]);
 				
 				printf("\x1b[32mVersion\x1b[39m      : %s\n", settings->version);
+			}
+			else if (!strcmp(argv[i], "--name"))
+			{
+				#include "movef.c"
+
+				settings->name = (char*)realloc(settings->name, (strlen(argv[i])+1)*sizeof(char));
+				strcpy(settings->name, argv[i]);
+				
+				printf("\x1b[32mName\x1b[39m         : %s\n", settings->name);
 			}
 			else
 			{
