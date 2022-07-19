@@ -39,6 +39,14 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
+				// case 'l':
+				// 	#include "movef.c"
+
+				// 	saPush(&settings->libs, argv[i]);
+
+				// 	printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libs.items[settings->libs.size-1]);
+
+				// 	break;
 				case 'v':
 					#include "movef.c"
 					
@@ -86,9 +94,9 @@ int getSettings (
 				case 'p':
 					#include "movef.c"
 
-					saPush(&settings->libs, argv[i]);
+					saPush(&settings->libDirs, argv[i]);
 
-					printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libs.items[settings->libs.size-1]);
+					printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libDirs.items[settings->libDirs.size-1]);
 
 					break;
 				default:
