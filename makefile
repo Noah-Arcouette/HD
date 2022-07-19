@@ -30,11 +30,14 @@ configure:
 
 # 	rm /etc/mimik/docs/LibMACSV/ -rf
 
-${OUT}: ./inc/info.h ./obj/main.o
+${OUT}: ./inc/info.h ./obj/main.o ./obj/getFiles.o
 	${CC} -o ${OUT} ./obj/*.o ${LIBS}
 
 ./obj/main.o: ./src/main.c
 	${CC} -o ./obj/main.o -c ./src/main.c
+
+./obj/getFiles.o: ./src/getFiles.c
+	${CC} -o ./obj/getFiles.o -c ./src/getFiles.c
 
 ./inc/info.h: ./mkinfo
 	./mkinfo ${VER}
