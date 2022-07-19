@@ -1,0 +1,16 @@
+# binaries
+obj/
+bin/
+*.stack-dump
+
+# compressed
+*.gz
+
+# tests
+*.test
+test.*
+test/
+!test.c
+
+
+inc/info.h
