@@ -10,9 +10,6 @@
 --source
 --binary
 --object
---library
---path
---flag
 
 */
 
@@ -46,6 +43,30 @@ int getSettings (
 				strcpy(settings->name, argv[i]);
 				
 				printf("\x1b[32mName\x1b[39m         : %s\n", settings->name);
+			}
+			else if (!strcmp(argv[i], "--flag"))
+			{
+				#include "movef.c"
+
+				saPush(&settings->flags, argv[i]);
+
+				printf("\x1b[32mFlags\x1b[39m        : %s\n", settings->flags.items[settings->flags.size-1]);
+			}
+			else if (!strcmp(argv[i], "--path"))
+			{
+				#include "movef.c"
+
+				saPush(&settings->libDirs, argv[i]);
+
+				printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libDirs.items[settings->libDirs.size-1]);
+			}
+			else if (!strcmp(argv[i], "--library"))
+			{
+				#include "movef.c"
+
+				saPush(&settings->libs, argv[i]);
+
+				printf("\x1b[32mLibrary\x1b[39m      : %s\n", settings->libs.items[settings->libs.size-1]);
 			}
 			else
 			{
