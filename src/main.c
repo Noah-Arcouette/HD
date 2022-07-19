@@ -5,11 +5,13 @@
 #include <msap.h>
 #include <string.h>
 #include "structures.h"
-#include "functions.h"
 #include "info.h"
+#include "functions.h"
 
 int main (int argc, char **argv)
 {
+	int crash = 0;
+
 	printf(
 "\x1b[1;35mHD\x1b[39m V" VER "-" REV "\n\
 Under the \x1b[32mMimik License 1.0\n\
@@ -42,9 +44,11 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 	printf("\x1b[1;35mReading Settings\x1b[0m  ┃\n━━━━━━━━━━━━━━━━━━┛\n");
 
 	// read command line parameters into a settings structure
-	if (getSettings(&settings, argc, argv))
+	if (getSettings(&settings, (size_t)argc, argv))
 	{
-		printf("ERROR");
+		printf("\n\x1b[1;31m━━━━CRASH━━━━\x1b[0m\n");
+
+		crash = 1;
 	}
 
 	// free settings
@@ -59,5 +63,5 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 	free(settings.name);
 	free(settings.version);
 
-	return 0;
+	return crash;
 }

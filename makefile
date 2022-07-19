@@ -5,7 +5,7 @@ VER     = 1.0
 LIBS    = -lmacsv -lmsap -lmcolor
 
 all: ${OUT}
-	${OUT} -c ./conf.acsv
+	${OUT} -v 1.0 -n project
 
 build: clean ${OUT}
 	strip -s ${OUT}
@@ -39,7 +39,7 @@ ${OUT}: ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o
 ./obj/getFiles.o: ./src/getFiles.c
 	${CC} -o ./obj/getFiles.o -c ./src/getFiles.c
 
-./obj/getSettings.o: ./src/getSettings.c
+./obj/getSettings.o: ./src/getSettings.c ./inc/movef.c
 	${CC} -o ./obj/getSettings.o -c ./src/getSettings.c
 
 ./inc/info.h: ./mkinfo

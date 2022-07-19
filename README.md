@@ -6,7 +6,6 @@ MakeFiles generated from `#include`s
 
 includes and sources need to be in their own dirs
 
---version, -v : display version and exit
 --config, -c  : set config file
 --inc, -i     : add include dir
 --src, -s     : add source dir
@@ -16,4 +15,4 @@ includes and sources need to be in their own dirs
 --path, -p    : add to lib path
 --flag, -f    : add flag
 --name, -n    : set name to project
---release, -r : set release version
+--version, -v : set release version
