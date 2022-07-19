@@ -10,11 +10,11 @@
 --inc, -i     : add include dir
 --src, -s     : add source dir
 --lib, -l     : add lib
---path, -p    : add to lib path
---flag, -f    : add flag
+--path
+--flag
 
---bin, -b     : set output dir
---obj, -o     : set output for objects
+--bin
+--obj
 --name
 --version
 */
@@ -45,7 +45,7 @@ int getSettings (
 					settings->version = (char*)realloc(settings->version, (strlen(argv[i])+1)*sizeof(char));
 					strcpy(settings->version, argv[i]);
 					
-					printf("\x1b[32mVersion\x1b[39m: %s\n", settings->version);
+					printf("\x1b[32mVersion\x1b[39m      : %s\n", settings->version);
 
 					break;
 				case 'n':
@@ -54,7 +54,41 @@ int getSettings (
 					settings->name = (char*)realloc(settings->name, (strlen(argv[i])+1)*sizeof(char));
 					strcpy(settings->name, argv[i]);
 					
-					printf("\x1b[32mName\x1b[39m: %s\n", settings->name);
+					printf("\x1b[32mName\x1b[39m         : %s\n", settings->name);
+
+					break;
+				case 'o':
+					#include "movef.c"
+
+					settings->objDir = (char*)realloc(settings->objDir, (strlen(argv[i])+1)*sizeof(char));
+					strcpy(settings->objDir, argv[i]);
+					
+					printf("\x1b[32mObject Path\x1b[39m  : %s\n", settings->objDir);
+
+					break;
+				case 'b':
+					#include "movef.c"
+
+					settings->binDir = (char*)realloc(settings->binDir, (strlen(argv[i])+1)*sizeof(char));
+					strcpy(settings->binDir, argv[i]);
+					
+					printf("\x1b[32mBinary Path\x1b[39m  : %s\n", settings->binDir);
+
+					break;
+				case 'f':
+					#include "movef.c"
+
+					saPush(&settings->flags, argv[i]);
+
+					printf("\x1b[32mFlags\x1b[39m        : %s\n", settings->flags.items[settings->flags.size-1]);
+
+					break;
+				case 'p':
+					#include "movef.c"
+
+					saPush(&settings->libs, argv[i]);
+
+					printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libs.items[settings->libs.size-1]);
 
 					break;
 				default:

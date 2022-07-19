@@ -11,6 +11,8 @@ void getFiles (char *file, sa *files)
 	// open file
 	FILE *fp = fopen(file, "r");
 
+	// check for file
+
 	// get file size
 	fseek(fp, 0, SEEK_END);
 	const size_t size = ftell(fp);
