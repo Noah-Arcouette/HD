@@ -86,8 +86,10 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 
 					crash = 1;
 				}
-
-				printf("%s", makefile);
+				else
+				{
+					printf("%s", makefile);
+				}
 
 				free(makefile);
 			}

@@ -6,7 +6,7 @@
 
 int genHead (char **makefile, struct hd_settings s)
 {
-	size_t size = 1149;
+	size_t size = 1321;
 	*makefile = (char*)malloc(size * sizeof(char));
 
 	register size_t i;
@@ -56,13 +56,13 @@ int genHead (char **makefile, struct hd_settings s)
 		strcat(*makefile, " ");
 	}
 
-	// LIBS
+	// Flags
 	strcat(*makefile, "\nCFLAGS  = ");
 
 	for (i = 0; i<s.flags.size; i++)
 	{
 		// resize to fit include
-		size += strlen(s.flags.items[i])+3;
+		size += strlen(s.flags.items[i])+1;
 		*makefile = (char*)realloc(*makefile, size * sizeof(char));
 	
 		// add include
@@ -91,20 +91,57 @@ int genHead (char **makefile, struct hd_settings s)
 	strcat(*makefile, "\nVERSION = ");
 	strcat(*makefile, s.version);
 
+	// presets
+	strcat(*makefile, "\
+\n\
+# presets\n\
+OUT = ${NAME}\n\
+# test out ${NAME}-${VER}_test\n\
+CC  = cc ${CFLAGS}\n\
+\n\
+\n\
+# build test\n\
+all: message ${OUT}\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Created Binary\\x1b[0m\\n\"\n\
+\n\
+# build release\n\
+build: message clean_part ${OUT}\n\
+	strip -s ${OUT}\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ \\x1b[39mRelase build\\x1b[0m\\n\"\n\
+\n\
+# clean section\n\
+clean_part:\n\
+	rm ${BIN}/* ${OBJ}/* -f\n\
+	printf \"\\x1b[1;35m━━━CLEANED━━━┫\\x1b[0m\\n\"\n\
+\n\
+# clean\n\
+clean: message clean_part\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛\\x1b[0m\\n\"\n\
+\n\
+\n\
+# generate new makefile\n\
+gen: message clean_part\n\
+	hd <options>\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new \\x1b[35m MakeFile \\x1b[0m\\n\"\n\
+\n\
+# print settings\n\
+message:\n\
+	printf \"\\1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VER}\n\
+	printf \"\\x1b[1;39mMakefile generated from \\x1b[35mHD\\x1b[39m\\n\"\n\
+	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.0\\n\"\n\
+	printf \"\\x1b[39m ━ \\x1b[1;32mCopyright (c) 2022 Noah Arcouette\\x1b[0m  ┃\\n\"\n\
+	printf \"\\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\\n\"\n\
+\n\
+ifndef VERBOSE\n\
+.SILENT:\n\
+endif\n\
+\n\
+");
+
 	return 0;
 }
 
 /*
-sa srcDirs; // to open files for reading
-
-char *binDir; // to output binary
-
-# presets
-OUT = ${NAME}
-# test out ${NAME}-${VER}_test
-CC  = cc ${CFLAGS}
-
-
 # build test
 all: message ${OUT}
 	printf "\x1b[1;32m━━━SUCCESS━━━┛ Created Binary\x1b[0m\n"

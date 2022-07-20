@@ -13,7 +13,7 @@ all: ${OUT}
 	-f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 \
 	-l msap -l macsv \
 	-s ./src \
-	-i ./inc
+	-i ./inc 
 
 build: clean ${OUT}
 	strip -s ${OUT}
