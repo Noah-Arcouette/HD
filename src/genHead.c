@@ -12,7 +12,7 @@ int genHead (char **makefile, struct hd_settings s)
 	register size_t i;
 
 	// INC
-	strcpy(*makefile, "INC     = ");
+	strcpy(*makefile, "# Flags\nINC     = ");
 
 	for (i = 0; i<s.incDirs.size; i++)
 	{
@@ -26,14 +26,29 @@ int genHead (char **makefile, struct hd_settings s)
 		strcat(*makefile, " ");
 	}
 
+	// LIB
+	strcat(*makefile, "\nLIB     = ");
+
+	for (i = 0; i<s.libDirs.size; i++)
+	{
+		// resize to fit include
+		size += strlen(s.libDirs.items[i])+3;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+	
+		// add include
+		strcat(*makefile, "-L");
+		strcat(*makefile, s.libDirs.items[i]);
+		strcat(*makefile, " ");
+	}
+
 	strcat(*makefile, "\n");
+
 
 	return 0;
 }
 
 /*
 sa srcDirs; // to open files for reading
-sa libDirs; // to add to flags
 sa libs;    // to add to flags
 sa flags;   // to add to flags
 
@@ -44,7 +59,6 @@ char *name;    // add application name
 char *version; // add version to application
 
 # flags
-LIB     = -L...
 LIBS    = -l...
 CFLAGS += ...
 CFLAGS += ${INC} ${LIB} ${LIBS}
