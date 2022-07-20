@@ -70,7 +70,11 @@ int genHead (char **makefile, struct hd_settings s)
 		strcat(*makefile, " ");
 	}
 
-	strcat(*makefile, "\nCFLAGS += ${INC} ${LIB} ${LIBS}");
+	strcat(*makefile, "\nCFLAGS += ${INC} ${LIB} ${LIBS}\n");
+
+	// OBJ
+	strcat(*makefile, "\n# directories\nOBJ     = ");
+	strcat(*makefile, s.objDir);
 
 	return 0;
 }
@@ -79,16 +83,10 @@ int genHead (char **makefile, struct hd_settings s)
 sa srcDirs; // to open files for reading
 
 char *binDir; // to output binary
-char *objDir; // to output objects
 
 char *name;    // add application name
 char *version; // add version to application
 
-# flags
-CFLAGS += ${INC} ${LIB} ${LIBS}
-
-# directories
-OBJ     = ...
 BIN     = ...
 
 # binary info
