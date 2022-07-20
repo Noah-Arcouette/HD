@@ -7,7 +7,7 @@ LIBS    = -lmacsv -lmsap
 all: ${OUT}
 	${OUT} \
 	-v 1.2 \
-	-n HD \
+	-n hd \
 	-o ./obj \
 	-b ./bin \
 	-f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 \

@@ -80,6 +80,14 @@ int genHead (char **makefile, struct hd_settings s)
 	strcat(*makefile, "\nBIN     = ");
 	strcat(*makefile, s.binDir);
 
+	// binary info
+	strcat(*makefile, "\n\n#binary info");
+
+	// NAME
+	strcat(*makefile, "\nNAME    = ");
+	strcat(*makefile, s.name);
+
+
 	return 0;
 }
 
@@ -91,10 +99,6 @@ char *binDir; // to output binary
 char *name;    // add application name
 char *version; // add version to application
 
-BIN     = ...
-
-# binary info
-NAME    = ...
 VER     = ...
 
 # presets
