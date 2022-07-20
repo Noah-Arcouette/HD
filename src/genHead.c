@@ -6,7 +6,7 @@
 
 int genHead (char **makefile, struct hd_settings s)
 {
-	size_t size = 1314;
+	size_t size = 1500;
 	*makefile = (char*)malloc(size * sizeof(char));
 
 	register size_t i;
@@ -121,6 +121,8 @@ clean: message clean_part\n\
 \n\
 # generate new makefile\n\
 gen: message clean_part\n\
+	printf \"\\x1b[1;39m━━━━━━━━━━━━━┛\\x1b[0m\\n\\n\"\n\
+\n\
 	hd ");
 
 	// rebuild settings
@@ -189,7 +191,7 @@ gen: message clean_part\n\
 	}
 
 	strcat(*makefile, "\n\
-	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new\\x1b[35m MakeFile \\x1b[0m\\n\"\n\
+	printf \"\\x1b[1;32m\\n━━━━━━━━━━━━━┓\\nSUCCESS      ┃  \\x1b[39mCreate new\\x1b[35m MakeFile \\x1b[32m\\n━━━━━━━━━━━━━┛\\x1b[0m\\n\"\n\
 \n\
 # print settings\n\
 message:\n\
