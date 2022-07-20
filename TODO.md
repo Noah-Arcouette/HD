@@ -1,6 +1,6 @@
  - [x] parse args
  - [ ] parse conf
- - [ ] Run checks
+ - [x] Run checks
  - [ ] open include files and source files
  - [ ] get #include files from sources
  - [ ] check for include file in include files
