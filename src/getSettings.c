@@ -61,7 +61,7 @@ int getSettings (
 
 				saPush(&settings->flags, argv[i]);
 
-				printf("\x1b[32mFlags\x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
+				printf("\x1b[32mFlag \x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
 			}
 			else if (!strcmp(argv[i], "--path"))
 			{
@@ -172,7 +172,7 @@ int getSettings (
 
 					saPush(&settings->flags, argv[i]);
 
-					printf("\x1b[32mFlags\x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
+					printf("\x1b[32mFlag \x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
 
 					break;
 				case 'p':
