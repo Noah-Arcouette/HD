@@ -5,7 +5,7 @@ VER     = 1.0
 LIBS    = -lmacsv -lmsap -lmcolor
 
 all: ${OUT}
-	${OUT} --version 1.0 --name HD --object ./obj --binary ./bin -f -g -f -Wall -f -Wextra -f -O2 --flag -std=gnu18 -l msap -l mcolor --library macsv --source ./src --include ./inc
+	${OUT} -s . --version 1.0 --name HD --object ./obj --binary ./bin -f -g -f -Wall -f -Wextra -f -O2 --flag -std=gnu18 -l msap -l mcolor --library macsv --source ./src --include ./inc
 
 build: clean ${OUT}
 	strip -s ${OUT}
@@ -30,7 +30,7 @@ configure:
 
 # 	rm /etc/mimik/docs/LibMACSV/ -rf
 
-${OUT}: ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
+${OUT}: ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
 	${CC} -o ${OUT} ./obj/*.o ${LIBS}
 
 ./obj/main.o: ./src/main.c
@@ -44,6 +44,9 @@ ${OUT}: ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/run
 
 ./obj/runChecks.o: ./src/runChecks.c
 	${CC} -o ./obj/runChecks.o -c ./src/runChecks.c
+
+./obj/openFiles.o: ./src/openFiles.c
+	${CC} -o ./obj/openFiles.o -c ./src/openFiles.c
 
 ./inc/info.h: ./mkinfo
 	./mkinfo ${VER}

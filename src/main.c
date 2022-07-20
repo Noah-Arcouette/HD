@@ -61,6 +61,32 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 
 			crash = 1;
 		}
+		else
+		{
+			printf("\x1b[39m━━━━━━━━━━━━━┫\n\x1b[1;35mParsing\x1b[0m      ┃\n━━━━━━━━━━━━━┫\n");
+
+			struct hd_file *files;
+
+			// open and split all include files
+			if (openFiles(settings, &files))
+			{
+				printf("\x1b[1;31m━━━CRASHED━━━┛\x1b[0m\n");
+
+				crash = 1;
+			}
+			else
+			{
+
+			}
+
+			for (register size_t i = 0; !files[i].term; i++)
+			{
+				free(files[i].path);
+				saFree(files[i].files);
+			}
+
+			free(files);
+		}
 	}
 
 	// free settings

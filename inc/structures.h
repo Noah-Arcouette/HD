@@ -22,6 +22,7 @@ struct hd_file
 {
 	char *path;
 	sa    files;
+	int   term:1; // terminator
 };
 
 #endif
