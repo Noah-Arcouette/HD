@@ -76,6 +76,10 @@ int genHead (char **makefile, struct hd_settings s)
 	strcat(*makefile, "\n# directories\nOBJ     = ");
 	strcat(*makefile, s.objDir);
 
+	// BIN
+	strcat(*makefile, "\nBIN     = ");
+	strcat(*makefile, s.binDir);
+
 	return 0;
 }
 
