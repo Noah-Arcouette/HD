@@ -41,7 +41,7 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 	settings.name    = NULL;
 	settings.version = NULL;
 
-	printf("\x1b[1;35mSettings\x1b[0m  ┃\n━━━━━━━━━━┛\n");
+	printf("\x1b[1;35mSettings\x1b[0m     ┃\n━━━━━━━━━━━━━┫\n");
 
 	// read command line parameters into a settings structure
 	if (getSettings(&settings, (size_t)argc, argv))
@@ -49,6 +49,10 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 		printf("\n\x1b[1;31m━━━━CRASH━━━━\x1b[0m\n");
 
 		crash = 1;
+	}
+	else
+	{
+
 	}
 
 	// free settings

@@ -28,7 +28,7 @@ int getSettings (
 				settings->version = (char*)realloc(settings->version, (strlen(argv[i])+1)*sizeof(char));
 				strcpy(settings->version, argv[i]);
 				
-				printf("\x1b[32mVersion\x1b[39m      : %s\n", settings->version);
+				printf("\x1b[32mVersion\x1b[39m      ┃ %s\n", settings->version);
 			}
 			else if (!strcmp(argv[i], "--include"))
 			{
@@ -36,7 +36,7 @@ int getSettings (
 
 				saPush(&settings->incDirs, argv[i]);
 
-				printf("\x1b[32mInclude Path\x1b[39m : %s\n", settings->incDirs.items[settings->incDirs.size-1]);
+				printf("\x1b[32mInclude Path\x1b[39m ┃ %s\n", settings->incDirs.items[settings->incDirs.size-1]);
 			}
 			else if (!strcmp(argv[i], "--source"))
 			{
@@ -44,7 +44,7 @@ int getSettings (
 
 				saPush(&settings->srcDirs, argv[i]);
 
-				printf("\x1b[32mSource Path\x1b[39m  : %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
+				printf("\x1b[32mSource Path\x1b[39m  ┃ %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
 			}
 			else if (!strcmp(argv[i], "--name"))
 			{
@@ -53,7 +53,7 @@ int getSettings (
 				settings->name = (char*)realloc(settings->name, (strlen(argv[i])+1)*sizeof(char));
 				strcpy(settings->name, argv[i]);
 				
-				printf("\x1b[32mName\x1b[39m         : %s\n", settings->name);
+				printf("\x1b[32mName\x1b[39m         ┃ %s\n", settings->name);
 			}
 			else if (!strcmp(argv[i], "--flag"))
 			{
@@ -61,7 +61,7 @@ int getSettings (
 
 				saPush(&settings->flags, argv[i]);
 
-				printf("\x1b[32mFlags\x1b[39m        : %s\n", settings->flags.items[settings->flags.size-1]);
+				printf("\x1b[32mFlags\x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
 			}
 			else if (!strcmp(argv[i], "--path"))
 			{
@@ -69,7 +69,7 @@ int getSettings (
 
 				saPush(&settings->libDirs, argv[i]);
 
-				printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libDirs.items[settings->libDirs.size-1]);
+				printf("\x1b[32mLibrary Path\x1b[39m ┃ %s\n", settings->libDirs.items[settings->libDirs.size-1]);
 			}
 			else if (!strcmp(argv[i], "--object"))
 			{
@@ -78,7 +78,7 @@ int getSettings (
 				settings->objDir = (char*)realloc(settings->objDir, (strlen(argv[i])+1)*sizeof(char));
 				strcpy(settings->objDir, argv[i]);
 				
-				printf("\x1b[32mObject Path\x1b[39m  : %s\n", settings->objDir);
+				printf("\x1b[32mObject Path\x1b[39m  ┃ %s\n", settings->objDir);
 			}
 			else if (!strcmp(argv[i], "--binary"))
 			{
@@ -87,7 +87,7 @@ int getSettings (
 				settings->binDir = (char*)realloc(settings->binDir, (strlen(argv[i])+1)*sizeof(char));
 				strcpy(settings->binDir, argv[i]);
 				
-				printf("\x1b[32mBinary Path\x1b[39m  : %s\n", settings->binDir);
+				printf("\x1b[32mBinary Path\x1b[39m  ┃ %s\n", settings->binDir);
 			}
 			else if (!strcmp(argv[i], "--library"))
 			{
@@ -95,11 +95,11 @@ int getSettings (
 
 				saPush(&settings->libs, argv[i]);
 
-				printf("\x1b[32mLibrary\x1b[39m      : %s\n", settings->libs.items[settings->libs.size-1]);
+				printf("\x1b[32mLibrary\x1b[39m      ┃ %s\n", settings->libs.items[settings->libs.size-1]);
 			}
 			else
 			{
-				puts(argv[i]);
+				goto error;
 			}
 		}
 		// char parameter
@@ -112,7 +112,7 @@ int getSettings (
 
 					saPush(&settings->incDirs, argv[i]);
 
-					printf("\x1b[32mInclude Path\x1b[39m : %s\n", settings->incDirs.items[settings->incDirs.size-1]);
+					printf("\x1b[32mInclude Path\x1b[39m ┃ %s\n", settings->incDirs.items[settings->incDirs.size-1]);
 
 					break;
 				case 's':
@@ -120,7 +120,7 @@ int getSettings (
 
 					saPush(&settings->srcDirs, argv[i]);
 
-					printf("\x1b[32mSource Path\x1b[39m  : %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
+					printf("\x1b[32mSource Path\x1b[39m  ┃ %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
 
 					break;
 				case 'l':
@@ -128,7 +128,7 @@ int getSettings (
 
 					saPush(&settings->libs, argv[i]);
 
-					printf("\x1b[32mLibrary\x1b[39m      : %s\n", settings->libs.items[settings->libs.size-1]);
+					printf("\x1b[32mLibrary\x1b[39m      ┃ %s\n", settings->libs.items[settings->libs.size-1]);
 
 					break;
 				case 'v':
@@ -137,7 +137,7 @@ int getSettings (
 					settings->version = (char*)realloc(settings->version, (strlen(argv[i])+1)*sizeof(char));
 					strcpy(settings->version, argv[i]);
 					
-					printf("\x1b[32mVersion\x1b[39m      : %s\n", settings->version);
+					printf("\x1b[32mVersion\x1b[39m      ┃ %s\n", settings->version);
 
 					break;
 				case 'n':
@@ -146,7 +146,7 @@ int getSettings (
 					settings->name = (char*)realloc(settings->name, (strlen(argv[i])+1)*sizeof(char));
 					strcpy(settings->name, argv[i]);
 					
-					printf("\x1b[32mName\x1b[39m         : %s\n", settings->name);
+					printf("\x1b[32mName\x1b[39m         ┃ %s\n", settings->name);
 
 					break;
 				case 'o':
@@ -155,7 +155,7 @@ int getSettings (
 					settings->objDir = (char*)realloc(settings->objDir, (strlen(argv[i])+1)*sizeof(char));
 					strcpy(settings->objDir, argv[i]);
 					
-					printf("\x1b[32mObject Path\x1b[39m  : %s\n", settings->objDir);
+					printf("\x1b[32mObject Path\x1b[39m  ┃ %s\n", settings->objDir);
 
 					break;
 				case 'b':
@@ -164,7 +164,7 @@ int getSettings (
 					settings->binDir = (char*)realloc(settings->binDir, (strlen(argv[i])+1)*sizeof(char));
 					strcpy(settings->binDir, argv[i]);
 					
-					printf("\x1b[32mBinary Path\x1b[39m  : %s\n", settings->binDir);
+					printf("\x1b[32mBinary Path\x1b[39m  ┃ %s\n", settings->binDir);
 
 					break;
 				case 'f':
@@ -172,7 +172,7 @@ int getSettings (
 
 					saPush(&settings->flags, argv[i]);
 
-					printf("\x1b[32mFlags\x1b[39m        : %s\n", settings->flags.items[settings->flags.size-1]);
+					printf("\x1b[32mFlags\x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
 
 					break;
 				case 'p':
@@ -180,21 +180,25 @@ int getSettings (
 
 					saPush(&settings->libDirs, argv[i]);
 
-					printf("\x1b[32mLibrary Path\x1b[39m : %s\n", settings->libDirs.items[settings->libDirs.size-1]);
+					printf("\x1b[32mLibrary Path\x1b[39m ┃ %s\n", settings->libDirs.items[settings->libDirs.size-1]);
 
 					break;
 				default:
-					printf("\x1b[31mERROR\x1b[39m: Unknow option \x1b[32m%s\n", argv[i]);
-					return 1;
-
-					break;
+					goto error;
 			}
 		}
 		// IDK
 		else
 		{
-
+			goto error;
 		}
+
+		continue;
+
+		error:
+			printf("\x1b[31mERROR\x1b[39m        : Unknown option \x1b[32m%s\n", argv[i]);
+
+			continue;
 	}
 
 	return 0;
