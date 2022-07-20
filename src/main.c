@@ -55,12 +55,12 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 		printf("\x1b[39m━━━━━━━━━━━━━┫\n\x1b[1;35mChecking\x1b[0m     ┃\n━━━━━━━━━━━━━┫\n");
 
 		// run checks
-		// if (runChecks(&settings))
-		// {
-		// 	printf("\n\x1b[1;31m━━━━CRASHED━━━━┛\x1b[0m\n");
+		if (runChecks(&settings))
+		{
+			printf("\x1b[1;31m━━━CRASHED━━━┛\x1b[0m\n");
 
-		// 	crash = 1;
-		// }
+			crash = 1;
+		}
 	}
 
 	// free settings
@@ -74,6 +74,11 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 	free(settings.objDir);
 	free(settings.name);
 	free(settings.version);
+
+	if (!crash)
+	{
+		printf("\x1b[1;32m━━━SUCCESS━━━┛\x1b[0m\n");
+	}
 
 	return crash;
 }

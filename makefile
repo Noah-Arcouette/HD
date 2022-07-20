@@ -30,7 +30,7 @@ configure:
 
 # 	rm /etc/mimik/docs/LibMACSV/ -rf
 
-${OUT}: ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o
+${OUT}: ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
 	${CC} -o ${OUT} ./obj/*.o ${LIBS}
 
 ./obj/main.o: ./src/main.c
@@ -41,6 +41,9 @@ ${OUT}: ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o
 
 ./obj/getSettings.o: ./src/getSettings.c ./inc/movef.c
 	${CC} -o ./obj/getSettings.o -c ./src/getSettings.c
+
+./obj/runChecks.o: ./src/runChecks.c
+	${CC} -o ./obj/runChecks.o -c ./src/runChecks.c
 
 ./inc/info.h: ./mkinfo
 	./mkinfo ${VER}
