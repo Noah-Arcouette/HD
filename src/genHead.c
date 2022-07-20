@@ -143,32 +143,67 @@ gen: message clean_part\n\
 	strcat(*makefile, " -o ");
 	strcat(*makefile, s.objDir);
 
+	for (i = 0; i<s.srcDirs.size; i++)
+	{
+		size += strlen(s.srcDirs.items[i]) + 4;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+		
+		strcat(*makefile, " -s ");
+		strcat(*makefile, s.srcDirs.items[i]);
+	}
 
-// strcat(*makefile, "\n\
-// 	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new\\x1b[35m MakeFile \\x1b[0m\\n\"\n\
-// \n\
-// # print settings\n\
-// message:\n\
-// 	printf \"\\x1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VER}\n\
-// 	printf \"\\x1b[1;39mMakefile generated from \\x1b[35mHD\\x1b[39m\\n\"\n\
-// 	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.0\\n\"\n\
-// 	printf \"\\x1b[39m ━ \\x1b[1;32mCopyright (c) 2022 Noah Arcouette\\x1b[0m  ┃\\n\"\n\
-// 	printf \"\\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\\n\"\n\
-// \n\
-// ifndef VERBOSE\n\
-// .SILENT:\n\
-// endif\n\
-// \n\
-// ");
+	for (i = 0; i<s.incDirs.size; i++)
+	{
+		size += strlen(s.incDirs.items[i]) + 4;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+		
+		strcat(*makefile, " -i ");
+		strcat(*makefile, s.incDirs.items[i]);
+	}
+
+	for (i = 0; i<s.libDirs.size; i++)
+	{
+		size += strlen(s.libDirs.items[i]) + 4;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+		
+		strcat(*makefile, " -p ");
+		strcat(*makefile, s.libDirs.items[i]);
+	}
+
+	for (i = 0; i<s.libs.size; i++)
+	{
+		size += strlen(s.libs.items[i]) + 4;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+		
+		strcat(*makefile, " -l ");
+		strcat(*makefile, s.libs.items[i]);
+	}
+
+	for (i = 0; i<s.flags.size; i++)
+	{
+		size += strlen(s.flags.items[i]) + 4;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+		
+		strcat(*makefile, " -f ");
+		strcat(*makefile, s.flags.items[i]);
+	}
+
+	strcat(*makefile, "\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new\\x1b[35m MakeFile \\x1b[0m\\n\"\n\
+\n\
+# print settings\n\
+message:\n\
+	printf \"\\x1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VER}\n\
+	printf \"\\x1b[1;39mMakefile generated from \\x1b[35mHD\\x1b[39m\\n\"\n\
+	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.0\\n\"\n\
+	printf \"\\x1b[39m ━ \\x1b[1;32mCopyright (c) 2022 Noah Arcouette\\x1b[0m  ┃\\n\"\n\
+	printf \"\\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\\n\"\n\
+\n\
+ifndef VERBOSE\n\
+.SILENT:\n\
+endif\n\
+\n\
+");
 
 	return 0;
 }
-
-/*
-sa srcDirs; // to open files for reading
-sa incDirs; // to check if include exist
-sa libDirs; // to add to flags
-sa libs;    // to add to flags
-sa flags;   // to add to flags
-*/
-
