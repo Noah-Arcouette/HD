@@ -196,7 +196,7 @@ int getSettings (
 		continue;
 
 		error:
-			printf("\x1b[31mERROR\x1b[39m        : Unknown option \x1b[32m%s\n", argv[i]);
+			printf("\x1b[33mWARNING\x1b[39m      ┃ Unknown option \x1b[32m%s\n", argv[i]);
 
 			continue;
 	}

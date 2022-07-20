@@ -19,7 +19,7 @@ Copyright (c) 2022 Noah Arcouette\n\
 \x1b[39mThis is free and open source software;\n\
 see the \x1b[32mMimik License 1.0\x1b[39m for copying conditions.\n\
 The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b[0m  ┃\n\
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n\n"
+━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
 );
 
 	// set empty settings
@@ -46,13 +46,21 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 	// read command line parameters into a settings structure
 	if (getSettings(&settings, (size_t)argc, argv))
 	{
-		printf("\n\x1b[1;31m━━━━CRASH━━━━\x1b[0m\n");
+		printf("\x1b[1;31m━━━CRASHED━━━┛\x1b[0m\n");
 
 		crash = 1;
 	}
 	else
 	{
+		printf("\x1b[39m━━━━━━━━━━━━━┫\n\x1b[1;35mChecking\x1b[0m     ┃\n━━━━━━━━━━━━━┫\n");
 
+		// run checks
+		// if (runChecks(&settings))
+		// {
+		// 	printf("\n\x1b[1;31m━━━━CRASHED━━━━┛\x1b[0m\n");
+
+		// 	crash = 1;
+		// }
 	}
 
 	// free settings

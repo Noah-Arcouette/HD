@@ -5,5 +5,6 @@
 
 void getFiles    (char*, sa*);
 int  getSettings (struct hd_settings*, int, char**);
+int  runChecks   (struct hd_settings*);
 
 #endif
