@@ -2,7 +2,7 @@
 #include "functions.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <dirent.h>
 #include <msap.h>
 #include <errno.h>
@@ -146,12 +146,34 @@ int runChecks (struct hd_settings *s)
 		return 1;
 	}
 
+	// name
+	printf("\x1b[39m             ┃\n\x1b[35mName        \x1b[39m ┃\n");
+
+	if (!s->name)
+	{
+		s->name = malloc(sizeof("newProject"));
+		strcpy(s->name, "newProject");
+
+		printf("\x1b[33mWARNING      \x1b[39m┃ Setting default I.E \x1b[32m%s\n", s->name);
+	}
+	else
+	{
+		printf("\x1b[32mValue        \x1b[39m┃ \x1b[32m%s\n", s->name);
+	}
+
+	// version
+	printf("\x1b[39m             ┃\n\x1b[35mVersion     \x1b[39m ┃\n");
+
+	if (!s->version)
+	{
+		s->version = malloc(sizeof("0.0"));
+		strcpy(s->version, "0.0");
+
+		printf("\x1b[33mWARNING      \x1b[39m┃ Setting default I.E \x1b[32m%s\n", s->version);
+	}
+	else
+	{
+		printf("\x1b[32mValue        \x1b[39m┃ \x1b[32m%s\n", s->version);
+	}
 	return 0;
 }
-
-/*
-struct hd_settings
-{
-	char *version; // check if valid version, or default
-};
-*/
