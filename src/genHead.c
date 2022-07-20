@@ -123,28 +123,52 @@ clean: message clean_part\n\
 gen: message clean_part\n\
 	hd ");
 
-strcat(*makefile, "\n\
-	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new\\x1b[35m MakeFile \\x1b[0m\\n\"\n\
-\n\
-# print settings\n\
-message:\n\
-	printf \"\\x1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VER}\n\
-	printf \"\\x1b[1;39mMakefile generated from \\x1b[35mHD\\x1b[39m\\n\"\n\
-	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.0\\n\"\n\
-	printf \"\\x1b[39m ━ \\x1b[1;32mCopyright (c) 2022 Noah Arcouette\\x1b[0m  ┃\\n\"\n\
-	printf \"\\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\\n\"\n\
-\n\
-ifndef VERBOSE\n\
-.SILENT:\n\
-endif\n\
-\n\
-");
+	// rebuild settings
+	size += 
+		strlen(s.name) + 4 + 
+		strlen(s.version) + 4 +
+		strlen(s.binDir) + 4 +
+		strlen(s.objDir) + 4;
+
+	*makefile = (char*)realloc(*makefile, size * sizeof(char));
+	strcat(*makefile, "-n ");
+	strcat(*makefile, s.name);
+
+	strcat(*makefile, " -v ");
+	strcat(*makefile, s.version);
+
+	strcat(*makefile, " -b ");
+	strcat(*makefile, s.binDir);
+
+	strcat(*makefile, " -o ");
+	strcat(*makefile, s.objDir);
+
+
+// strcat(*makefile, "\n\
+// 	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new\\x1b[35m MakeFile \\x1b[0m\\n\"\n\
+// \n\
+// # print settings\n\
+// message:\n\
+// 	printf \"\\x1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VER}\n\
+// 	printf \"\\x1b[1;39mMakefile generated from \\x1b[35mHD\\x1b[39m\\n\"\n\
+// 	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.0\\n\"\n\
+// 	printf \"\\x1b[39m ━ \\x1b[1;32mCopyright (c) 2022 Noah Arcouette\\x1b[0m  ┃\\n\"\n\
+// 	printf \"\\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\\n\"\n\
+// \n\
+// ifndef VERBOSE\n\
+// .SILENT:\n\
+// endif\n\
+// \n\
+// ");
 
 	return 0;
 }
 
 /*
-gen: message clean_part
-	hd <options>
+sa srcDirs; // to open files for reading
+sa incDirs; // to check if include exist
+sa libDirs; // to add to flags
+sa libs;    // to add to flags
+sa flags;   // to add to flags
 */
 
