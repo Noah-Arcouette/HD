@@ -41,15 +41,28 @@ int genHead (char **makefile, struct hd_settings s)
 		strcat(*makefile, " ");
 	}
 
-	strcat(*makefile, "\n");
+	// LIBS
+	strcat(*makefile, "\nLIBS    = ");
 
+	for (i = 0; i<s.libs.size; i++)
+	{
+		// resize to fit include
+		size += strlen(s.libs.items[i])+3;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+	
+		// add include
+		strcat(*makefile, "-l");
+		strcat(*makefile, s.libs.items[i]);
+		strcat(*makefile, " ");
+	}
+
+	strcat(*makefile, "\n");
 
 	return 0;
 }
 
 /*
 sa srcDirs; // to open files for reading
-sa libs;    // to add to flags
 sa flags;   // to add to flags
 
 char *binDir; // to output binary
@@ -59,7 +72,6 @@ char *name;    // add application name
 char *version; // add version to application
 
 # flags
-LIBS    = -l...
 CFLAGS += ...
 CFLAGS += ${INC} ${LIB} ${LIBS}
 
