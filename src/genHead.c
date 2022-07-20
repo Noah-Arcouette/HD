@@ -87,6 +87,9 @@ int genHead (char **makefile, struct hd_settings s)
 	strcat(*makefile, "\nNAME    = ");
 	strcat(*makefile, s.name);
 
+	// VERSION
+	strcat(*makefile, "\nVERSION = ");
+	strcat(*makefile, s.version);
 
 	return 0;
 }
@@ -95,11 +98,6 @@ int genHead (char **makefile, struct hd_settings s)
 sa srcDirs; // to open files for reading
 
 char *binDir; // to output binary
-
-char *name;    // add application name
-char *version; // add version to application
-
-VER     = ...
 
 # presets
 OUT = ${NAME}
