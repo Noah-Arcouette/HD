@@ -76,7 +76,20 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 			}
 			else
 			{
-				
+				printf("\x1b[39m━━━━━━━━━━━━━┫\n\x1b[1;35mGenerating\x1b[0m   ┃\n━━━━━━━━━━━━━┫\n");
+			
+				char *makefile = NULL;
+
+				if (genHead(&makefile, settings))
+				{
+					printf("\x1b[1;31m━━━CRASHED━━━┛\x1b[0m\n");
+
+					crash = 1;
+				}
+
+				printf("%s", makefile);
+
+				free(makefile);
 			}
 
 			register size_t files_i;

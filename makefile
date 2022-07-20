@@ -2,10 +2,18 @@ CFLAGS  =
 CC      = cc -g -Wall -Wextra -O2 -std=gnu18 -I./inc ${CFLAGS}
 OUT     = ./bin/hd
 VER     = 1.0
-LIBS    = -lmacsv -lmsap -lmcolor
+LIBS    = -lmacsv -lmsap
 
 all: ${OUT}
-	${OUT} -s . --version 1.0 --name HD --object ./obj --binary ./bin -f -g -f -Wall -f -Wextra -f -O2 --flag -std=gnu18 -l msap -l mcolor --library macsv --source ./src --include ./inc
+	${OUT} \
+	-v 1.2 \
+	-n HD \
+	-o ./obj \
+	-b ./bin \
+	-f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 \
+	-l msap -l macsv \
+	-s ./src \
+	-i ./inc
 
 build: clean ${OUT}
 	strip -s ${OUT}
@@ -30,7 +38,7 @@ configure:
 
 # 	rm /etc/mimik/docs/LibMACSV/ -rf
 
-${OUT}: ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
+${OUT}: ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
 	${CC} -o ${OUT} ./obj/*.o ${LIBS}
 
 ./obj/main.o: ./src/main.c
@@ -47,6 +55,9 @@ ${OUT}: ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSe
 
 ./obj/openFiles.o: ./src/openFiles.c
 	${CC} -o ./obj/openFiles.o -c ./src/openFiles.c
+
+./obj/genHead.o: ./src/genHead.c
+	${CC} -o ./obj/genHead.o -c ./src/genHead.c
 
 ./inc/info.h: ./mkinfo
 	./mkinfo ${VER}

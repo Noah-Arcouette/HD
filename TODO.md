@@ -1,6 +1,7 @@
- - [x] parse args
+ - [x] parse args ***Add -m, -h, and -c ***
  - [ ] parse conf
  - [x] Run checks
  - [x] get #include files from sources
- - [ ] generate makefile head using conf
+ - [x] generate makefile head using conf
  - [ ] generate makefile body using sources
+    - [ ] include file look up
