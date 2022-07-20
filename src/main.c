@@ -79,10 +79,11 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 
 			}
 
-			for (register size_t i = 0; !files[i].term; i++)
+			register size_t files_i;
+			for (files_i = 0; !files[files_i].term; files_i++)
 			{
-				free(files[i].path);
-				saFree(files[i].files);
+				free(files[files_i].path);
+				saFree(files[files_i].files);
 			}
 
 			free(files);

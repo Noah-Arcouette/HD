@@ -4,7 +4,7 @@
 #include <msap.h>
 #include "functions.h"
 
-void getFiles (char *file, sa *files)
+int getFiles (char *file, sa *files)
 {
 	sa s;
 
@@ -12,6 +12,10 @@ void getFiles (char *file, sa *files)
 	FILE *fp = fopen(file, "r");
 
 	// check for file
+	if (fp == NULL)
+	{
+		return 1;
+	}
 
 	// get file size
 	fseek(fp, 0, SEEK_END);
@@ -34,6 +38,7 @@ void getFiles (char *file, sa *files)
 	ssize_t *hashs = saSubSearch(s, "#include \"", -1);
 	char *hold;
 	size_t plus;
+	ssize_t *check = NULL;
 
 	// move file names into files structure
 	for (register ssize_t i = 0; hashs[i]!=-1; i++)
@@ -46,18 +51,25 @@ void getFiles (char *file, sa *files)
 		// remove last char
 		hold[strlen(hold)-1] = (char)0;
 
-		// get value shift ro remove "#include"
+		// get value shift to remove "#include"
 		for (register size_t j = 0; hold[j]!=0 && hold[j]!='\"'; j++)
 		{
 			plus++;
 		}
 
-		// push onto files structure with out
-		// "#include"
-		saPush(files, hold+plus);
+		// check for duplicates
+		if ((check = saSearch(*files, hold+plus, 1))[0] == -1)
+		{
+			// push onto files structure with out
+			// "#include"
+			saPush(files, hold+plus);
+		}
+		free(check);
 	}
 
 	// free data
 	free(hashs);
 	saFree(s);
+
+	return 0;
 }

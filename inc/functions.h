@@ -3,7 +3,7 @@
 
 #include <msap.h>
 
-void getFiles    (char*, sa*);
+int  getFiles    (char*, sa*);
 int  getSettings (struct hd_settings*, int, char**);
 int  runChecks   (struct hd_settings*);
 int  openFiles   (struct hd_settings, struct hd_file**);
