@@ -6,7 +6,7 @@
 
 int genHead (char **makefile, struct hd_settings s)
 {
-	size_t size = 1321;
+	size_t size = 1314;
 	*makefile = (char*)malloc(size * sizeof(char));
 
 	register size_t i;
@@ -121,12 +121,14 @@ clean: message clean_part\n\
 \n\
 # generate new makefile\n\
 gen: message clean_part\n\
-	hd <options>\n\
-	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new \\x1b[35m MakeFile \\x1b[0m\\n\"\n\
+	hd ");
+
+strcat(*makefile, "\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Create new\\x1b[35m MakeFile \\x1b[0m\\n\"\n\
 \n\
 # print settings\n\
 message:\n\
-	printf \"\\1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VER}\n\
+	printf \"\\x1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VER}\n\
 	printf \"\\x1b[1;39mMakefile generated from \\x1b[35mHD\\x1b[39m\\n\"\n\
 	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.0\\n\"\n\
 	printf \"\\x1b[39m ━ \\x1b[1;32mCopyright (c) 2022 Noah Arcouette\\x1b[0m  ┃\\n\"\n\
@@ -142,41 +144,7 @@ endif\n\
 }
 
 /*
-# build test
-all: message ${OUT}
-	printf "\x1b[1;32m━━━SUCCESS━━━┛ Created Binary\x1b[0m\n"
-
-# build release
-build: message clean_part ${OUT}
-	strip -s ${OUT}
-	printf "\x1b[1;32m━━━SUCCESS━━━┛ \x1b[39mRelase build\x1b[0m\n"
-
-# clean section
-clean_part:
-	rm ${BIN}/* ${OBJ}/* -f
-	printf "\x1b[1;35m━━━CLEANED━━━┫\x1b[0m\n"
-
-# clean
-clean: message clean_part
-	printf "\x1b[1;32m━━━SUCCESS━━━┛\x1b[0m\n"
-	
-
-# generate new makefile
 gen: message clean_part
 	hd <options>
-	printf "\x1b[1;32m━━━SUCCESS━━━┛ Create new \x1b[35m MakeFile \x1b[0m\n"
-
-# print settings
-message:
-	printf "\1b[1;35m%s \x1b[39mV%s\n" ${NAME} ${VER}
-	printf "\x1b[1;39mMakefile generated from \x1b[35mHD\x1b[39m\n"
-	printf "\x1b[39m ━ \x1b[1;39mUnder the \x1b[32mMimik License 1.0\n"
-	printf "\x1b[39m ━ \x1b[1;32mCopyright (c) 2022 Noah Arcouette\x1b[0m  ┃\n"
-	printf "\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
-
-ifndef VERBOSE
-.SILENT:
-endif
-
 */
 
