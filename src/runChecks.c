@@ -82,16 +82,76 @@ int runChecks (struct hd_settings *s)
 		return 1;
 	}
 
+	// Binary Path
+	printf("\x1b[39m             ┃\n\x1b[35mBinary Path \x1b[39m ┃\n");
+
+	if (!s->binDir)
+	{
+		s->binDir = malloc(sizeof("./bin/"));
+		strcpy(s->binDir, "./bin/");
+
+		printf("\x1b[33mWARNING      \x1b[39m┃ Setting default I.E \x1b[32m./bin/\n");
+	}
+
+	DIR* dir = opendir(s->binDir);
+
+	if (dir)
+	{
+		printf("\x1b[32mExists \x1b[39m      ┃ Directory \x1b[32m%s\n", s->binDir);
+
+		closedir(dir);
+	}
+	else if (ENOENT == errno)
+	{
+		mkdir(s->binDir, S_IRWXU);
+
+		printf("\x1b[33mCreated \x1b[39m     ┃ Directory \x1b[32m%s\n", s->binDir);
+	}
+	else
+	{
+		printf("\x1b[31mError \x1b[39m       ┃ Directory \x1b[32m%s\n", s->binDir);
+
+		return 1;
+	}
+
+	// Object Path
+	printf("\x1b[39m             ┃\n\x1b[35mObject Path \x1b[39m ┃\n");
+
+	if (!s->objDir)
+	{
+		s->objDir = malloc(sizeof("./obj/"));
+		strcpy(s->objDir, "./obj/");
+
+		printf("\x1b[33mWARNING      \x1b[39m┃ Setting default I.E \x1b[32m%s\n", s->objDir);
+	}
+
+	dir = opendir(s->objDir);
+
+	if (dir)
+	{
+		printf("\x1b[32mExists \x1b[39m      ┃ Directory \x1b[32m%s\n", s->objDir);
+
+		closedir(dir);
+	}
+	else if (ENOENT == errno)
+	{
+		mkdir(s->objDir, S_IRWXU);
+
+		printf("\x1b[33mCreated \x1b[39m     ┃ Directory \x1b[32m%s\n", s->objDir);
+	}
+	else
+	{
+		printf("\x1b[31mError \x1b[39m       ┃ Directory \x1b[32m%s\n", s->objDir);
+
+		return 1;
+	}
+
 	return 0;
 }
 
 /*
 struct hd_settings
 {
-	char *binDir; // check if exist, if not then create, or default
-	char *objDir; // check if exist, if not then create, or default
-
-	char *name;    // no check, or default
 	char *version; // check if valid version, or default
 };
 */
