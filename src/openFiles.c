@@ -20,7 +20,7 @@ int openFiles (struct hd_settings s, struct hd_file **files)
 	struct dirent *pDirent;
 	DIR *pDir;
 
-	printf("\x1b[1;35mSources      \x1b[39m┃\n");
+	printf("\x1b[1m");
 
 	// open and parse all source files
 	for (register size_t i = 0; i<src.size; i++)
