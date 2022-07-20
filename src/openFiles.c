@@ -60,7 +60,7 @@ int openFiles (struct hd_settings s, struct hd_file **files)
 				))
 				{
 					// error
-					puts("\x1b[31mFatal        \x1b[39m┃");
+					puts("\x1b[31mFatal        \x1b[39m┃ Canot open file");
 					(*files)[size-1].term = 1;
 					closedir(pDir);
 
