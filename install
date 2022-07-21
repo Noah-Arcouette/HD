@@ -2,7 +2,7 @@
 
 mkdir -p ./bin/ ./obj/
 
-./mkinfo
+./mkinfo 1.2
 
 make build CFLAGS="$1"
 
