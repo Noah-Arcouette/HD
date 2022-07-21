@@ -13,7 +13,7 @@ char* getDir (char *dir, char *file)
 	strcat(out, "/");
 	strcat(out, file);
 
-	if (!access(out, F_OK)) 
+	if (!access(out, R_OK)) 
 	{
 	    return out;
 	}

@@ -30,6 +30,15 @@ int getSettings (
 				
 				printf("\x1b[32mVersion\x1b[39m      ┃ %s\n", settings->version);
 			}
+			else if (!strcmp(argv[i], "--makefile"))
+			{
+				#include "movef.c"
+					
+				settings->makefile = (char*)realloc(settings->makefile, (strlen(argv[i])+1)*sizeof(char));
+				strcpy(settings->makefile, argv[i]);
+				
+				printf("\x1b[32mMakeFile\x1b[39m     ┃ %s\n", settings->makefile);
+			}
 			else if (!strcmp(argv[i], "--include"))
 			{
 				#include "movef.c"
@@ -107,6 +116,15 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
+				case 'm':
+					#include "movef.c"
+					
+					settings->makefile = (char*)realloc(settings->makefile, (strlen(argv[i])+1)*sizeof(char));
+					strcpy(settings->makefile, argv[i]);
+					
+					printf("\x1b[32mMakeFile\x1b[39m     ┃ %s\n", settings->makefile);
+
+					break;
 				case 'i':
 					#include "movef.c"
 

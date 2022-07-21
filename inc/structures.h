@@ -14,8 +14,9 @@ struct hd_settings
 	char *binDir; // to output binary
 	char *objDir; // to output objects
 
-	char *name;    // add application name
-	char *version; // add version to application
+	char *name;     // set application name
+	char *version;  // set version to application
+	char *makefile; // set makefile / output file name
 };
 
 struct hd_file

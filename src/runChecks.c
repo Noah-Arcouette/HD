@@ -175,5 +175,20 @@ int runChecks (struct hd_settings *s)
 	{
 		printf("\x1b[32mValue        \x1b[39m┃ \x1b[32m%s\n", s->version);
 	}
+
+	// makefile
+	printf("\x1b[39m             ┃\n\x1b[35mMakeFile    \x1b[39m ┃\n");
+
+	if (!s->makefile)
+	{
+		s->makefile = malloc(sizeof("makefile"));
+		strcpy(s->makefile, "makefile");
+
+		printf("\x1b[33mWARNING      \x1b[39m┃ Setting default I.E \x1b[32m%s\n", s->makefile);
+	}
+	else
+	{
+		printf("\x1b[32mValue        \x1b[39m┃ \x1b[32m%s\n", s->makefile);
+	}
 	return 0;
 }

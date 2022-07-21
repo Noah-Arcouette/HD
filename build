@@ -15,4 +15,5 @@ make VERSION=${VER}
 -l msap -l macsv \
 -s ./src \
 -i ./inc \
--i ./snp
+-i ./snp \
+-m makefile
