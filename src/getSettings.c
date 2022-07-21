@@ -106,6 +106,10 @@ int getSettings (
 
 				printf("\x1b[32mLibrary\x1b[39m      ┃ %s\n", settings->libs.items[settings->libs.size-1]);
 			}
+			else if (!strcmp(argv[i], "--help"))
+			{
+				goto help;
+			}
 			else
 			{
 				goto error;
@@ -116,6 +120,9 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
+				case 'h':
+					goto help;
+					break;
 				case 'm':
 					#include "movef.c"
 					
@@ -214,9 +221,27 @@ int getSettings (
 		continue;
 
 		error:
-			printf("\x1b[33mWARNING\x1b[39m      ┃ Unknown option \x1b[32m%s\n", argv[i]);
+			printf("\x1b[31mERROR\x1b[39m        ┃ Unknown option \x1b[32m%s\n", argv[i]);
 
-			continue;
+			// return 1;
+
+		help:
+			puts("\x1b[1;39m━━━━━━━━━━━━━┻━━━━━┓\n\x1b[35mHelp\x1b[39m               ┃\n━━━━━━━━━━━━━━━━━━━┫\n\
+\x1b[32m━━include, ━i      \x1b[39m┃ Add include directory\n\
+\x1b[32m━━source, ━s       \x1b[39m┃ Add source directory\n\
+\x1b[32m━━binary, ━b       \x1b[39m┃ Set binary directory\n\
+\x1b[32m━━object, ━o       \x1b[39m┃ Set object directory\n\
+\x1b[32m━━library, ━l      \x1b[39m┃ Add library\n\
+\x1b[32m━━path, ━p         \x1b[39m┃ Add library path\n\
+\x1b[32m━━flag, ━f         \x1b[39m┃ Add C flag\n\
+\x1b[32m━━name, ━n         \x1b[39m┃ Set project / binary name\n\
+\x1b[32m━━version, ━v      \x1b[39m┃ Set project / binary version\n\
+\x1b[32m━━makefile, ━m     \x1b[39m┃ Set makefile / output name\n\
+\x1b[32m━━help, ━h         \x1b[39m┃ Show help message\n\
+━━━━━━━━━━━━━┳━━━━━┛\
+");
+
+			return 1;
 	}
 
 	return 0;

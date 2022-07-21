@@ -10,7 +10,6 @@ bin/
 *.test
 test.*
 test/
-!test.c
 
 
 inc/info.h

@@ -1,8 +1,8 @@
 # Flags
-INC     = -I./inc -I./snp
-LIB     =
-LIBS    = -lmsap -lmacsv
-CFLAGS  = -g -Wall -Wextra -O2 -std=gnu18 -D_GNU_SOURCE
+INC     = -I./inc -I./snp 
+LIB     = 
+LIBS    = -lmsap -lmacsv 
+CFLAGS  = -g -Wall -Wextra -O2 -std=gnu18 -D_GNU_SOURCE 
 CFLAGS += ${INC}
 
 # directories
@@ -41,7 +41,7 @@ clean: message clean_part
 gen: message clean_part
 	printf "\x1b[1;39m━━━━━━━━━━━━━┛\x1b[0m\n\n"
 
-	hd -n hd -v 1.2 -b ./bin -o ./obj -s ./src -i ./inc -i ./snp -l msap -l macsv -f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 -f -D_GNU_SOURCE
+	hd -n hd -v 1.2 -m makefile -b ./bin -o ./obj -s ./src -i ./inc -i ./snp -l msap -l macsv -f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 -f -D_GNU_SOURCE
 	printf "\x1b[1;32m\n━━━━━━━━━━━━━┓\nSUCCESS      ┃  \x1b[39mCreate new\x1b[35m MakeFile \x1b[32m\n━━━━━━━━━━━━━┛\x1b[0m\n"
 
 # print settings
@@ -56,35 +56,35 @@ ifndef VERBOSE
 .SILENT:
 endif
 
-${OBJ}/skcehCnur.o: ./src/runChecks.c ./inc/structures.h ./inc/functions.h
+${OBJ}/skcehCnur.o: ./src/runChecks.c ./inc/structures.h ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/runChecks.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/skcehCnur.o ./src/runChecks.c
 
-${OBJ}/daeHneg.o: ./src/genHead.c ./inc/structures.h ./inc/functions.h
+${OBJ}/daeHneg.o: ./src/genHead.c ./inc/structures.h ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/genHead.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/daeHneg.o ./src/genHead.c
 
-${OBJ}/eliFedulcni.o: ./src/includeFile.c ./inc/structures.h ./inc/functions.h
+${OBJ}/eliFedulcni.o: ./src/includeFile.c ./inc/structures.h ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/includeFile.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/eliFedulcni.o ./src/includeFile.c
 
-${OBJ}/sgnitteSteg.o: ./src/getSettings.c ./inc/structures.h ./inc/functions.h ./snp/movef.c
+${OBJ}/sgnitteSteg.o: ./src/getSettings.c ./inc/structures.h ./inc/functions.h ./snp/movef.c 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/getSettings.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/sgnitteSteg.o ./src/getSettings.c
 
-${OBJ}/ydoBneg.o: ./src/genBody.c ./inc/structures.h ./inc/functions.h
+${OBJ}/ydoBneg.o: ./src/genBody.c ./inc/structures.h ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/genBody.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/ydoBneg.o ./src/genBody.c
 
-${OBJ}/seliFnepo.o: ./src/openFiles.c ./inc/structures.h ./inc/functions.h
+${OBJ}/seliFnepo.o: ./src/openFiles.c ./inc/structures.h ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/openFiles.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/seliFnepo.o ./src/openFiles.c
 
-${OBJ}/niam.o: ./src/main.c ./inc/info.h ./inc/structures.h ./inc/functions.h
+${OBJ}/niam.o: ./src/main.c ./inc/info.h ./inc/structures.h ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/main.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/niam.o ./src/main.c
 
-${OBJ}/seliFteg.o: ./src/getFiles.c ./inc/functions.h
+${OBJ}/seliFteg.o: ./src/getFiles.c ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/getFiles.c
 	${CC} -c ${CFLAGS} -o ${OBJ}/seliFteg.o ./src/getFiles.c
 
