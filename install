@@ -2,6 +2,8 @@
 
 mkdir -p ./bin/ ./obj/
 
+./mkinfo
+
 make build CFLAGS="$1"
 
 sudo cp ./bin/hd /usr/bin/hd
