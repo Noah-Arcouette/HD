@@ -4,4 +4,4 @@ make clean
 
 sudo rm /usr/bin/hd 
 
-printf "\x1b[1;31mUninstalled!\x1b[0m\n"
+printf "\x1b[1;32mUninstalled!\x1b[0m\n"
