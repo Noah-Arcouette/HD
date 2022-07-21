@@ -7,6 +7,7 @@
 #include <msap.h>
 #include <errno.h>
 #include <sys/stat.h>
+#include <unistd.h>
 
 int checkDirs (sa s)
 {
@@ -186,9 +187,17 @@ int runChecks (struct hd_settings *s)
 
 		printf("\x1b[33mWARNING      \x1b[39m┃ Setting default I.E \x1b[32m%s\n", s->makefile);
 	}
+
+	if (!access(s->makefile, W_OK))
+	{
+		printf("\x1b[32mAccessible   \x1b[39m┃ \x1b[32m%s\n", s->makefile);
+	}
 	else
 	{
-		printf("\x1b[32mValue        \x1b[39m┃ \x1b[32m%s\n", s->makefile);
+		printf("\x1b[31mError        \x1b[39m┃ \x1b[32m%s\n", s->makefile);
+	
+		return 1;
 	}
+	
 	return 0;
 }
