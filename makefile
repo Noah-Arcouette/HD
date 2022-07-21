@@ -4,6 +4,8 @@ OUT     = ./bin/hd
 VER     = 1.0
 LIBS    = -lmacsv -lmsap
 
+OBJ = ./obj/
+
 all: ${OUT}
 	${OUT} \
 	-v 1.2 \
@@ -38,32 +40,32 @@ configure:
 # 	rm /usr/include/macsv.h -f
 # 	rm /etc/mimik/docs/LibMACSV/ -rf
 
-${OUT}: ./obj/genBody.o ./obj/includeFile.o ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
-	${CC} -o ${OUT} ./obj/*.o ${LIBS}
-
-./obj/main.o: ./src/main.c
+${OBJ}/main.o: ./src/main.c
 	${CC} -o ./obj/main.o -c ./src/main.c
 
-./obj/getFiles.o: ./src/getFiles.c
+${OBJ}/getFiles.o: ./src/getFiles.c
 	${CC} -o ./obj/getFiles.o -c ./src/getFiles.c
 
-./obj/getSettings.o: ./src/getSettings.c ./snp/movef.c
+${OBJ}/getSettings.o: ./src/getSettings.c ./snp/movef.c
 	${CC} -o ./obj/getSettings.o -c ./src/getSettings.c
 
-./obj/runChecks.o: ./src/runChecks.c
+${OBJ}/runChecks.o: ./src/runChecks.c
 	${CC} -o ./obj/runChecks.o -c ./src/runChecks.c
 
-./obj/openFiles.o: ./src/openFiles.c
+${OBJ}/openFiles.o: ./src/openFiles.c
 	${CC} -o ./obj/openFiles.o -c ./src/openFiles.c
 
-./obj/genHead.o: ./src/genHead.c
+${OBJ}/genHead.o: ./src/genHead.c
 	${CC} -o ./obj/genHead.o -c ./src/genHead.c
 
-./obj/includeFile.o: ./src/includeFile.c
+${OBJ}/includeFile.o: ./src/includeFile.c
 	${CC} -o ./obj/includeFile.o -c ./src/includeFile.c
 
-./obj/genBody.o: ./src/genBody.c
+${OBJ}/genBody.o: ./src/genBody.c
 	${CC} -o ./obj/genBody.o -c ./src/genBody.c
 
 ./inc/info.h: ./mkinfo
 	./mkinfo ${VER}
+
+${OUT}: ${OBJ}/genBody.o ${OBJ}/includeFile.o ${OBJ}/genHead.o ${OBJ}/openFiles.o ./inc/info.h ${OBJ}/main.o ${OBJ}/getFiles.o ${OBJ}/getSettings.o ${OBJ}/runChecks.o
+	${CC} -o ${OUT} ./obj/*.o ${LIBS}

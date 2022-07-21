@@ -95,9 +95,9 @@ int genHead (char **makefile, struct hd_settings s)
 	strcat(*makefile, "\
 \n\
 # presets\n\
-OUT = ${NAME}\n\
+OUT = ${BIN}/${NAME}\n\
 # test out ${NAME}-${VER}_test\n\
-CC  = cc ${CFLAGS}\n\
+CC  = cc\n\
 \n\
 \n\
 # build test\n\
