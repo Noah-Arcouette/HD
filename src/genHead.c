@@ -70,7 +70,7 @@ int genHead (char **makefile, struct hd_settings s)
 		strcat(*makefile, " ");
 	}
 
-	strcat(*makefile, "\nCFLAGS += ${INC} ${LIB} ${LIBS}\n");
+	strcat(*makefile, "\nCFLAGS += ${INC}\n");
 
 	// OBJ
 	strcat(*makefile, "\n# directories\nOBJ     = ");

@@ -89,6 +89,8 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 				else
 				{
 					printf("\x1b[1;32mGenerated    \x1b[39m┃ \x1b[35mMakefile \x1b[39mHead generated\x1b[0m\n");
+				
+					printf("%s", makefile);
 				}
 
 				free(makefile);
