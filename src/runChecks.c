@@ -188,7 +188,17 @@ int runChecks (struct hd_settings *s)
 		printf("\x1b[33mWARNING      \x1b[39m┃ Setting default I.E \x1b[32m%s\n", s->makefile);
 	}
 
-	if (!access(s->makefile, W_OK))
+	if (access(s->makefile, F_OK))
+	{
+		FILE *fp = fopen(s->makefile, "w");
+
+		printf("\x1b[33mCreated \x1b[39m     ┃ File \x1b[32m%s\n", s->makefile);
+
+		fwrite("\n", 2, 1, fp);
+
+		fclose(fp);
+	}
+	else if (!access(s->makefile, W_OK))
 	{
 		printf("\x1b[32mAccessible   \x1b[39m┃ \x1b[32m%s\n", s->makefile);
 	}

@@ -16,4 +16,4 @@ make VERSION=${VER}
 -s ./src \
 -i ./inc \
 -i ./snp \
--m makefile
+-m makefile.test

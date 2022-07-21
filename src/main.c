@@ -101,7 +101,20 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 					{
 						printf("\x1b[1;32mGenerated    \x1b[39m┃ \x1b[35mMakefile \x1b[39mBody generated\x1b[0m\n");
 
-						printf("%s", makefile);
+						FILE *fp = fopen(settings.makefile, "w");
+
+						if (!fp)
+						{
+							printf("\x1b[31mCan not open \x1b[39m┃ \x1b[32m%s\n", settings.makefile);
+						
+							crash = 1;
+						}
+						else
+						{
+							fwrite(makefile, strlen(makefile), 1, fp);
+
+							fclose(fp);
+						}
 					}
 				}
 

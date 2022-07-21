@@ -130,7 +130,8 @@ gen: message clean_part\n\
 		strlen(s.name) + 4 + 
 		strlen(s.version) + 4 +
 		strlen(s.binDir) + 4 +
-		strlen(s.objDir) + 4;
+		strlen(s.objDir) + 4 +
+		strlen(s.makefile) + 4;
 
 	*makefile = (char*)realloc(*makefile, size * sizeof(char));
 	strcat(*makefile, "-n ");
@@ -138,6 +139,9 @@ gen: message clean_part\n\
 
 	strcat(*makefile, " -v ");
 	strcat(*makefile, s.version);
+
+	strcat(*makefile, " -m ");
+	strcat(*makefile, s.makefile);
 
 	strcat(*makefile, " -b ");
 	strcat(*makefile, s.binDir);
