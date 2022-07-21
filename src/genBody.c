@@ -4,40 +4,40 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* getIso (char *file)
+void getIso (char *file, char **out)
 {
-	const size_t size = strlen(file)-3;
+	const size_t size = strlen(file)+10;
 
-	char *out = (char*)malloc(size * sizeof(char));
-	strcpy(out, "");
+	*out = (char*)realloc(*out, size * sizeof(char));
+	strcpy(*out, "${OBJ}/");
 
-	for (register size_t i = size; i>0 && file[i] != '/'; i--)
+	for (register size_t i = size-13; i>0 && file[i] != '/'; i--)
 	{
-		strncat(out, &file[i], 1);
+		strncat(*out, &file[i], 1);
 	}
 
-	return out;
+	strcat(*out, ".o");
 }
 
 int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 {
 	char *include;
-	char *iso;
+	char *iso = NULL;
 	register size_t size = strlen(*makefile)+1;
+
+	sa isos = { NULL, 0 };
 
 	// loop through files
 	for (register size_t i = 0; !files[i].term; i++)
 	{
 		// <objpath>/<isolet>.o: <path> ...
-		iso = getIso(files[i].path);
+		getIso(files[i].path, &iso);
 
-		size += strlen(files[i].path) + 6 + strlen(s.objDir) + strlen(iso);
+		size += strlen(files[i].path) + 3 + strlen(iso);
 		*makefile = (char*)realloc(*makefile, size*sizeof(char));
 
-		strcat(*makefile, s.objDir);
-		strcat(*makefile, "/");
 		strcat(*makefile, iso);
-		strcat(*makefile, ".o: ");
+		strcat(*makefile, ": ");
 		strcat(*makefile, files[i].path);
 		strcat(*makefile, " ");
 
@@ -69,19 +69,38 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 				return 1;
 			}
 		}
-		// \t${CC} ${CFLAGS} -o ${OBJ}/<iso>.o <path>\n
-		size += 33 + strlen(iso) + strlen(files[i].path);
+		// \t${CC} ${CFLAGS} -o <iso>.o <path>\n
+		size += 24 + strlen(iso) + strlen(files[i].path);
 		*makefile = (char*)realloc(*makefile, size * sizeof(char));
-		strcat(*makefile, "\n\t${CC} ${CFLAGS} -o ${OBJ}/");
+		strcat(*makefile, "\n\t${CC} ${CFLAGS} -o ");
 		strcat(*makefile, iso);
-		strcat(*makefile, ".o ");
+		strcat(*makefile, " ");
 		strcat(*makefile, files[i].path);
 		strcat(*makefile, "\n\n");
 
-		free(iso);
+		saPush(&isos, iso);
 
 		puts("\x1b[39m             ┃");
 	}
+	free(iso);
+
+	char *isosS = saJoin(isos, ' ');
+
+	
+	// ${OUT}: <isos>\n
+	// \t${CC} ${CFLAGS} ${LIB} -o ${OUT} <isos> ${LIBS}
+	size += 51 + (2*strlen(isosS));
+	*makefile = (char*)realloc(*makefile, size * sizeof(char));
+
+	strcat(*makefile, "${OUT}: ");
+	strcat(*makefile, isosS);
+	strcat(*makefile, "\n\t${CC} ${CFLAGS} ${LIB} -o ${OUT} ");
+	strcat(*makefile, isosS);
+	strcat(*makefile, " ${LIBS}\n");
+
+	free(isosS);
+
+	saFree(isos);
 
 	return 0;
 }
