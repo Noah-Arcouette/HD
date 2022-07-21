@@ -70,12 +70,16 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 			}
 		}
 		// \t${CC} ${CFLAGS} -o <iso>.o <path>\n
-		size += 24 + strlen(iso) + strlen(files[i].path);
+		// \tprintf "\x1b[1;32m\n━━━━━━━━━━━━━┓\nFILE         ┃  \x1b[39m %s\x1b[32m\n━━━━━━━━━━━━━┛\x1b[0m\n" <iso>
+		size += 182 + (strlen(iso)*2) + strlen(files[i].path);
 		*makefile = (char*)realloc(*makefile, size * sizeof(char));
 		strcat(*makefile, "\n\t${CC} ${CFLAGS} -o ");
 		strcat(*makefile, iso);
 		strcat(*makefile, " ");
 		strcat(*makefile, files[i].path);
+		strcat(*makefile, "\n");
+		strcat(*makefile, "\tprintf \"\\x1b[1;32m\\n━━━━━━━━━━━━━┓\\nFILE         ┃  \\x1b[39m %s\\x1b[32m\\n━━━━━━━━━━━━━┛\\x1b[0m\\n\" ");
+		strcat(*makefile, iso);
 		strcat(*makefile, "\n\n");
 
 		saPush(&isos, iso);
