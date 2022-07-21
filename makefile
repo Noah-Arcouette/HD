@@ -36,10 +36,9 @@ configure:
 # uninstall:
 # 	rm /lib/lib${OUT}.a -f
 # 	rm /usr/include/macsv.h -f
-
 # 	rm /etc/mimik/docs/LibMACSV/ -rf
 
-${OUT}: ./obj/includeFile.o ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
+${OUT}: ./obj/genBody.o ./obj/includeFile.o ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
 	${CC} -o ${OUT} ./obj/*.o ${LIBS}
 
 ./obj/main.o: ./src/main.c
@@ -62,6 +61,9 @@ ${OUT}: ./obj/includeFile.o ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj
 
 ./obj/includeFile.o: ./src/includeFile.c
 	${CC} -o ./obj/includeFile.o -c ./src/includeFile.c
+
+./obj/genBody.o: ./src/genBody.c
+	${CC} -o ./obj/genBody.o -c ./src/genBody.c
 
 ./inc/info.h: ./mkinfo
 	./mkinfo ${VER}

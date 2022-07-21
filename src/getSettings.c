@@ -16,7 +16,7 @@ int getSettings (
 {	
 	printf("\x1b[1m");
 
-	for (register size_t i = 1; i<argc; i++)
+	for (register int i = 1; i<argc; i++)
 	{
 		// string parameter
 		if (argv[i][0] == '-' && argv[i][1] == '-')
