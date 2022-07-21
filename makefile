@@ -1,71 +1,92 @@
-CFLAGS  =
-CC      = cc -g -Wall -Wextra -O2 -std=gnu18 -I./snp -I./inc ${CFLAGS}
-OUT     = ./bin/hd
-VER     = 1.0
-LIBS    = -lmacsv -lmsap
+# Flags
+INC     = -I./inc -I./snp
+LIB     =
+LIBS    = -lmsap -lmacsv
+CFLAGS  = -g -Wall -Wextra -O2 -std=gnu18
+CFLAGS += ${INC}
 
-OBJ = ./obj/
+# directories
+OBJ     = ./obj
+BIN     = ./bin
 
-all: ${OUT}
-	${OUT} \
-	-v 1.2 \
-	-n hd \
-	-o ./obj \
-	-b ./bin \
-	-f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 \
-	-l msap -l macsv \
-	-s ./src \
-	-i ./inc \
-	-i ./snp
+#binary info
+NAME    = hd
+VERSION = 1.2
+# presets
+OUT = ${BIN}/${NAME}
+# test out ${NAME}-${VER}_test
+CC  = cc
 
-build: clean ${OUT}
+
+# build test
+all: message ${OUT}
+	printf "\x1b[1;32m━━━SUCCESS━━━┛ Created Binary\x1b[0m\n"
+
+# build release
+build: message clean_part ${OUT}
 	strip -s ${OUT}
+	printf "\x1b[1;32m━━━SUCCESS━━━┛ \x1b[39mRelase build\x1b[0m\n"
 
-clean:
-	rm *.gz -f
-	rm ./bin/* ./obj/* *.stack-dump -f
+# clean section
+clean_part:
+	rm ${BIN}/* ${OBJ}/* -f
+	printf "\x1b[1;35m━━━CLEANED━━━┫\x1b[0m\n"
 
-configure:
-	mkdir -p ./bin/ ./obj/
+# clean
+clean: message clean_part
+	printf "\x1b[1;32m━━━SUCCESS━━━┛\x1b[0m\n"
 
-# install: clean configure ${LIB}
-# 	cp ${LIB} /lib/lib${OUT}.a
-# 	cp ./inc/macsv.h /usr/include/macsv.h
 
-# 	mkdir -p /etc/mimik/docs/LibMACSV
-# 	cp ./doc/* /etc/mimik/docs/LibMACSV/
+# generate new makefile
+gen: message clean_part
+	printf "\x1b[1;39m━━━━━━━━━━━━━┛\x1b[0m\n\n"
 
-# uninstall:
-# 	rm /lib/lib${OUT}.a -f
-# 	rm /usr/include/macsv.h -f
-# 	rm /etc/mimik/docs/LibMACSV/ -rf
+	hd -n hd -v 1.2 -b ./bin -o ./obj -s ./src -i ./inc -i ./snp -l msap -l macsv -f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18
+	printf "\x1b[1;32m\n━━━━━━━━━━━━━┓\nSUCCESS      ┃  \x1b[39mCreate new\x1b[35m MakeFile \x1b[32m\n━━━━━━━━━━━━━┛\x1b[0m\n"
 
-${OBJ}/main.o: ./src/main.c
-	${CC} -o ./obj/main.o -c ./src/main.c
+# print settings
+message:
+	printf "\x1b[1;35m%s \x1b[39mV%s\n" ${NAME} ${VERSION}
+	printf "\x1b[1;39mMakefile generated from \x1b[35mHD\x1b[39m\n"
+	printf "\x1b[39m ━ \x1b[1;39mUnder the \x1b[32mMimik License 1.0\n"
+	printf "\x1b[39m ━ \x1b[1;32mCopyright (c) 2022 Noah Arcouette\x1b[0m  ┃\n"
+	printf "\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
 
-${OBJ}/getFiles.o: ./src/getFiles.c
-	${CC} -o ./obj/getFiles.o -c ./src/getFiles.c
+ifndef VERBOSE
+.SILENT:
+endif
 
-${OBJ}/getSettings.o: ./src/getSettings.c ./snp/movef.c
-	${CC} -o ./obj/getSettings.o -c ./src/getSettings.c
+${OBJ}/skcehCnur.o: ./src/runChecks.c ./inc/structures.h ./inc/functions.h
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/runChecks.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/skcehCnur.o ./src/runChecks.c
 
-${OBJ}/runChecks.o: ./src/runChecks.c
-	${CC} -o ./obj/runChecks.o -c ./src/runChecks.c
+${OBJ}/daeHneg.o: ./src/genHead.c ./inc/structures.h ./inc/functions.h
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/genHead.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/daeHneg.o ./src/genHead.c
 
-${OBJ}/openFiles.o: ./src/openFiles.c
-	${CC} -o ./obj/openFiles.o -c ./src/openFiles.c
+${OBJ}/eliFedulcni.o: ./src/includeFile.c ./inc/structures.h ./inc/functions.h
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/includeFile.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/eliFedulcni.o ./src/includeFile.c
 
-${OBJ}/genHead.o: ./src/genHead.c
-	${CC} -o ./obj/genHead.o -c ./src/genHead.c
+${OBJ}/sgnitteSteg.o: ./src/getSettings.c ./inc/structures.h ./inc/functions.h ./snp/movef.c
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/getSettings.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/sgnitteSteg.o ./src/getSettings.c
 
-${OBJ}/includeFile.o: ./src/includeFile.c
-	${CC} -o ./obj/includeFile.o -c ./src/includeFile.c
+${OBJ}/ydoBneg.o: ./src/genBody.c ./inc/structures.h ./inc/functions.h
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/genBody.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/ydoBneg.o ./src/genBody.c
 
-${OBJ}/genBody.o: ./src/genBody.c
-	${CC} -o ./obj/genBody.o -c ./src/genBody.c
+${OBJ}/seliFnepo.o: ./src/openFiles.c ./inc/structures.h ./inc/functions.h
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/openFiles.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/seliFnepo.o ./src/openFiles.c
 
-./inc/info.h: ./mkinfo
-	./mkinfo ${VER}
+${OBJ}/niam.o: ./src/main.c ./inc/info.h ./inc/structures.h ./inc/functions.h
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/main.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/niam.o ./src/main.c
 
-${OUT}: ${OBJ}/genBody.o ${OBJ}/includeFile.o ${OBJ}/genHead.o ${OBJ}/openFiles.o ./inc/info.h ${OBJ}/main.o ${OBJ}/getFiles.o ${OBJ}/getSettings.o ${OBJ}/runChecks.o
-	${CC} -o ${OUT} ./obj/*.o ${LIBS}
+${OBJ}/seliFteg.o: ./src/getFiles.c ./inc/functions.h
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/getFiles.c
+	${CC} -c ${CFLAGS} -o ${OBJ}/seliFteg.o ./src/getFiles.c
+
+${OUT}: ${OBJ}/skcehCnur.o ${OBJ}/daeHneg.o ${OBJ}/eliFedulcni.o ${OBJ}/sgnitteSteg.o ${OBJ}/ydoBneg.o ${OBJ}/seliFnepo.o ${OBJ}/niam.o ${OBJ}/seliFteg.o
+	${CC} ${CFLAGS} ${LIB} -o ${OUT} ${OBJ}/skcehCnur.o ${OBJ}/daeHneg.o ${OBJ}/eliFedulcni.o ${OBJ}/sgnitteSteg.o ${OBJ}/ydoBneg.o ${OBJ}/seliFnepo.o ${OBJ}/niam.o ${OBJ}/seliFteg.o ${LIBS}
