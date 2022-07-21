@@ -107,7 +107,7 @@ all: message ${OUT}\n\
 # build release\n\
 build: message clean_part ${OUT}\n\
 	strip -s ${OUT}\n\
-	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ \\x1b[39mRelase build\\x1b[0m\\n\"\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ \\x1b[39mRelease build\\x1b[0m\\n\"\n\
 \n\
 # clean section\n\
 clean_part:\n\

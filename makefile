@@ -25,7 +25,7 @@ all: message ${OUT}
 # build release
 build: message clean_part ${OUT}
 	strip -s ${OUT}
-	printf "\x1b[1;32m━━━SUCCESS━━━┛ \x1b[39mRelase build\x1b[0m\n"
+	printf "\x1b[1;32m━━━SUCCESS━━━┛ \x1b[39mRelease build\x1b[0m\n"
 
 # clean section
 clean_part:
