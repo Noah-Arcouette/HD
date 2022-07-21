@@ -4,4 +4,4 @@
  - [x] get #include files from sources
  - [x] generate makefile head using conf
  - [ ] generate makefile body using sources
-    - [ ] include file look up
+    - [x] include file look up
