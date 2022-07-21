@@ -1,5 +1,5 @@
 CFLAGS  =
-CC      = cc -g -Wall -Wextra -O2 -std=gnu18 -I./inc ${CFLAGS}
+CC      = cc -g -Wall -Wextra -O2 -std=gnu18 -I./snp -I./inc ${CFLAGS}
 OUT     = ./bin/hd
 VER     = 1.0
 LIBS    = -lmacsv -lmsap
@@ -13,7 +13,8 @@ all: ${OUT}
 	-f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 \
 	-l msap -l macsv \
 	-s ./src \
-	-i ./inc 
+	-i ./inc \
+	-i ./snp
 
 build: clean ${OUT}
 	strip -s ${OUT}
@@ -38,7 +39,7 @@ configure:
 
 # 	rm /etc/mimik/docs/LibMACSV/ -rf
 
-${OUT}: ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
+${OUT}: ./obj/includeFile.o ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFiles.o ./obj/getSettings.o ./obj/runChecks.o
 	${CC} -o ${OUT} ./obj/*.o ${LIBS}
 
 ./obj/main.o: ./src/main.c
@@ -47,7 +48,7 @@ ${OUT}: ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFil
 ./obj/getFiles.o: ./src/getFiles.c
 	${CC} -o ./obj/getFiles.o -c ./src/getFiles.c
 
-./obj/getSettings.o: ./src/getSettings.c ./inc/movef.c
+./obj/getSettings.o: ./src/getSettings.c ./snp/movef.c
 	${CC} -o ./obj/getSettings.o -c ./src/getSettings.c
 
 ./obj/runChecks.o: ./src/runChecks.c
@@ -58,6 +59,9 @@ ${OUT}: ./obj/genHead.o ./obj/openFiles.o ./inc/info.h ./obj/main.o ./obj/getFil
 
 ./obj/genHead.o: ./src/genHead.c
 	${CC} -o ./obj/genHead.o -c ./src/genHead.c
+
+./obj/includeFile.o: ./src/includeFile.c
+	${CC} -o ./obj/includeFile.o -c ./src/includeFile.c
 
 ./inc/info.h: ./mkinfo
 	./mkinfo ${VER}

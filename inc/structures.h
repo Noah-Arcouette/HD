@@ -1,5 +1,5 @@
-#ifndef __HG_SETTINGS_H__
-#define __HD_GET_FILES_H__
+#ifndef __HD_STRUCTURES_H__
+#define __HD_STRUCTURES_H__
 
 #include <msap.h>
 

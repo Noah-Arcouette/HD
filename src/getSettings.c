@@ -10,7 +10,7 @@
 
 int getSettings (
 	struct hd_settings *settings, 
-	size_t argc, 
+	int argc, 
 	char** argv
 )
 {	
