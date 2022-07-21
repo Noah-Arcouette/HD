@@ -71,11 +71,11 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 		}
 		// \t${CC} ${CFLAGS} -o <iso>.o <path>\n
 		// \tprintf "\x1b[1;32m\n━━━━━━━━━━━━━┓\nFILE         ┃  \x1b[39m %s\x1b[32m\n━━━━━━━━━━━━━┛\x1b[0m\n" <iso>
-		size += 250 + strlen(iso) + (strlen(files[i].path)*2);
+		size += 300 + strlen(iso) + (strlen(files[i].path)*2);
 		*makefile = (char*)realloc(*makefile, size * sizeof(char));
 		strcat(*makefile, "\n\tprintf \"\\x1b[1;39m━━━━━━━━━━━━━┫\\n\\x1b[35mFILE         \\x1b[39m┃  \\x1b[39m %s\\x1b[39m\\n━━━━━━━━━━━━━┫\\x1b[0m\\n\" ");
 		strcat(*makefile, files[i].path);
-		strcat(*makefile, "\n\t${CC} -c ${CFLAGS} -o ");
+		strcat(*makefile, "\n\t${CC} -c ${DEFFLAGS} ${CFLAGS} -o ");
 		strcat(*makefile, iso);
 		strcat(*makefile, " ");
 		strcat(*makefile, files[i].path);
@@ -97,7 +97,7 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 
 	strcat(*makefile, "${OUT}: ");
 	strcat(*makefile, isosS);
-	strcat(*makefile, "\n\t${CC} ${CFLAGS} ${LIB} -o ${OUT} ");
+	strcat(*makefile, "\n\t${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${OUT} ");
 	strcat(*makefile, isosS);
 	strcat(*makefile, " ${LIBS}\n");
 

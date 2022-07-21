@@ -1,0 +1,9 @@
+#!/bin/sh
+
+mkdir -p ./bin/ ./obj/
+
+make build CFLAGS="$1"
+
+sudo cp ./bin/hd /usr/bin/hd
+
+printf "\x1b[1;31mInstalled!\x1b[0m\n"

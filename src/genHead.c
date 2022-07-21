@@ -12,7 +12,7 @@ int genHead (char **makefile, struct hd_settings s)
 	register size_t i;
 
 	// INC
-	strcpy(*makefile, "# Flags\nINC     = ");
+	strcpy(*makefile, "# Flags\nINC      = ");
 
 	for (i = 0; i<s.incDirs.size; i++)
 	{
@@ -27,7 +27,7 @@ int genHead (char **makefile, struct hd_settings s)
 	}
 
 	// LIB
-	strcat(*makefile, "\nLIB     = ");
+	strcat(*makefile, "\nLIB      = ");
 
 	for (i = 0; i<s.libDirs.size; i++)
 	{
@@ -42,7 +42,7 @@ int genHead (char **makefile, struct hd_settings s)
 	}
 
 	// LIBS
-	strcat(*makefile, "\nLIBS    = ");
+	strcat(*makefile, "\nLIBS     = ");
 
 	for (i = 0; i<s.libs.size; i++)
 	{
@@ -57,7 +57,7 @@ int genHead (char **makefile, struct hd_settings s)
 	}
 
 	// Flags
-	strcat(*makefile, "\nCFLAGS  = ");
+	strcat(*makefile, "\nDEFFLAGS = ");
 
 	for (i = 0; i<s.flags.size; i++)
 	{
@@ -70,7 +70,7 @@ int genHead (char **makefile, struct hd_settings s)
 		strcat(*makefile, " ");
 	}
 
-	strcat(*makefile, "\nCFLAGS += ${INC}\n");
+	strcat(*makefile, " ${INC}\n");
 
 	// OBJ
 	strcat(*makefile, "\n# directories\nOBJ     = ");
