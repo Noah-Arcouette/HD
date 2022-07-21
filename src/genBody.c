@@ -87,21 +87,23 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 	}
 	free(iso);
 
-	char *isosS = saJoin(isos, ' ');
+	if (isos.size > 0)
+	{
+		char *isosS = saJoin(isos, ' ');
 
-	
-	// ${OUT}: <isos>\n
-	// \t${CC} ${CFLAGS} ${LIB} -o ${OUT} <isos> ${LIBS}
-	size += 51 + (strlen(isosS)*2);
-	*makefile = (char*)realloc(*makefile, size * sizeof(char));
+		// ${OUT}: <isos>\n
+		// \t${CC} ${CFLAGS} ${LIB} -o ${OUT} <isos> ${LIBS}
+		size += 51 + (strlen(isosS)*2);
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
 
-	strcat(*makefile, "${OUT}: ");
-	strcat(*makefile, isosS);
-	strcat(*makefile, "\n\t${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${OUT} ");
-	strcat(*makefile, isosS);
-	strcat(*makefile, " ${LIBS}\n");
+		strcat(*makefile, "${OUT}: ");
+		strcat(*makefile, isosS);
+		strcat(*makefile, "\n\t${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${OUT} ");
+		strcat(*makefile, isosS);
+		strcat(*makefile, " ${LIBS}\n");
 
-	free(isosS);
+		free(isosS);
+	}
 
 	saFree(isos);
 
