@@ -67,9 +67,37 @@ int useConfig (char *file, struct hd_settings *s)
 			config.vals[hold]);
 	}
 
+	if ((hold = acsvSearch(config, "library")) >= 0)
+	{
+		saHold = saSplit(config.vals[hold], ' ');
+
+		for (i = 0; i<saHold.size; i++)
+		{
+			saPush(&s->libs, saHold.items[i]);
+		}
+
+		saFree(saHold);
+
+		printf("\x1b[1;32mLibrary      \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
+	if ((hold = acsvSearch(config, "path")) >= 0)
+	{
+		saHold = saSplit(config.vals[hold], ' ');
+
+		for (i = 0; i<saHold.size; i++)
+		{
+			saPush(&s->libDirs, saHold.items[i]);
+		}
+
+		saFree(saHold);
+
+		printf("\x1b[1;32mLibrary Path \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
 /*
-	library: msap macsv;
-	path: ;
 	flag: -g -Wall -Wextra -O2 -std=gnu18 -D_GNU_SOURCE;
 	name: hd;
 	version: 1.3;
