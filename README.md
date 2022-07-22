@@ -9,6 +9,8 @@ an error occurs.
 HD generates simple MakeFiles and sadly cant build libraries
 or installation / uninstallation scripts, *yet*.
 
+***Warning HD requires static libraries that aren't released yet, so you will have to use the prebuilt binary***
+
 
 # Help
 
