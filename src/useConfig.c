@@ -148,9 +148,14 @@ int useConfig (char *file, struct hd_settings *s)
 			config.vals[hold]);
 	}
 
-/*
-	makefile: makefile.test;
-*/
+	if ((hold = acsvSearch(config, "makefile")) >= 0)
+	{
+		s->makefile = (char*)realloc(s->makefile, sizeof(char) * (strlen(config.vals[hold])+1));
+		strcpy(s->makefile, config.vals[hold]);
+
+		printf("\x1b[1;32mMakeFile     \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
 
 	acsvFree(config);
 
