@@ -1,4 +1,4 @@
- - [x] parse args ***Add -c, and root path ***
+ - [x] parse args ***Add -c, (-T, -D / -S) ***
  - [ ] parse conf
  - [x] Run checks
  - [x] get #include files from sources

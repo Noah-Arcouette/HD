@@ -23,88 +23,43 @@ int getSettings (
 		{
 			if (!strcmp(argv[i], "--version"))
 			{
-				#include "movef.c"
-					
-				settings->version = (char*)realloc(settings->version, (strlen(argv[i])+1)*sizeof(char));
-				strcpy(settings->version, argv[i]);
-				
-				printf("\x1b[32mVersion\x1b[39m      ┃ %s\n", settings->version);
+				goto o_version;	
 			}
 			else if (!strcmp(argv[i], "--makefile"))
 			{
-				#include "movef.c"
-					
-				settings->makefile = (char*)realloc(settings->makefile, (strlen(argv[i])+1)*sizeof(char));
-				strcpy(settings->makefile, argv[i]);
-				
-				printf("\x1b[32mMakeFile\x1b[39m     ┃ %s\n", settings->makefile);
+				goto o_makefile;
 			}
 			else if (!strcmp(argv[i], "--include"))
 			{
-				#include "movef.c"
-
-				saPush(&settings->incDirs, argv[i]);
-
-				printf("\x1b[32mInclude Path\x1b[39m ┃ %s\n", settings->incDirs.items[settings->incDirs.size-1]);
+				goto o_include;
 			}
 			else if (!strcmp(argv[i], "--source"))
 			{
-				#include "movef.c"
-
-				saPush(&settings->srcDirs, argv[i]);
-
-				printf("\x1b[32mSource Path\x1b[39m  ┃ %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
+				goto o_source;
 			}
 			else if (!strcmp(argv[i], "--name"))
 			{
-				#include "movef.c"
-
-				settings->name = (char*)realloc(settings->name, (strlen(argv[i])+1)*sizeof(char));
-				strcpy(settings->name, argv[i]);
-				
-				printf("\x1b[32mName\x1b[39m         ┃ %s\n", settings->name);
+				goto o_name;
 			}
 			else if (!strcmp(argv[i], "--flag"))
 			{
-				#include "movef.c"
-
-				saPush(&settings->flags, argv[i]);
-
-				printf("\x1b[32mFlag \x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
+				goto o_flag;
 			}
 			else if (!strcmp(argv[i], "--path"))
 			{
-				#include "movef.c"
-
-				saPush(&settings->libDirs, argv[i]);
-
-				printf("\x1b[32mLibrary Path\x1b[39m ┃ %s\n", settings->libDirs.items[settings->libDirs.size-1]);
+				goto o_path;
 			}
 			else if (!strcmp(argv[i], "--object"))
 			{
-				#include "movef.c"
-
-				settings->objDir = (char*)realloc(settings->objDir, (strlen(argv[i])+1)*sizeof(char));
-				strcpy(settings->objDir, argv[i]);
-				
-				printf("\x1b[32mObject Path\x1b[39m  ┃ %s\n", settings->objDir);
+				goto o_object;
 			}
 			else if (!strcmp(argv[i], "--binary"))
 			{
-				#include "movef.c"
-
-				settings->binDir = (char*)realloc(settings->binDir, (strlen(argv[i])+1)*sizeof(char));
-				strcpy(settings->binDir, argv[i]);
-				
-				printf("\x1b[32mBinary Path\x1b[39m  ┃ %s\n", settings->binDir);
+				goto o_binary;
 			}
 			else if (!strcmp(argv[i], "--library"))
 			{
-				#include "movef.c"
-
-				saPush(&settings->libs, argv[i]);
-
-				printf("\x1b[32mLibrary\x1b[39m      ┃ %s\n", settings->libs.items[settings->libs.size-1]);
+				goto o_library;
 			}
 			else if (!strcmp(argv[i], "--help"))
 			{
@@ -124,90 +79,27 @@ int getSettings (
 					goto help;
 					break;
 				case 'm':
-					#include "movef.c"
-					
-					settings->makefile = (char*)realloc(settings->makefile, (strlen(argv[i])+1)*sizeof(char));
-					strcpy(settings->makefile, argv[i]);
-					
-					printf("\x1b[32mMakeFile\x1b[39m     ┃ %s\n", settings->makefile);
+					goto o_makefile;
 
 					break;
 				case 'i':
-					#include "movef.c"
-
-					saPush(&settings->incDirs, argv[i]);
-
-					printf("\x1b[32mInclude Path\x1b[39m ┃ %s\n", settings->incDirs.items[settings->incDirs.size-1]);
-
-					break;
+					goto o_include;
 				case 's':
-					#include "movef.c"
-
-					saPush(&settings->srcDirs, argv[i]);
-
-					printf("\x1b[32mSource Path\x1b[39m  ┃ %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
-
-					break;
+					goto o_source;
 				case 'l':
-					#include "movef.c"
-
-					saPush(&settings->libs, argv[i]);
-
-					printf("\x1b[32mLibrary\x1b[39m      ┃ %s\n", settings->libs.items[settings->libs.size-1]);
-
-					break;
+					goto o_library;
 				case 'v':
-					#include "movef.c"
-					
-					settings->version = (char*)realloc(settings->version, (strlen(argv[i])+1)*sizeof(char));
-					strcpy(settings->version, argv[i]);
-					
-					printf("\x1b[32mVersion\x1b[39m      ┃ %s\n", settings->version);
-
-					break;
+					goto o_version;
 				case 'n':
-					#include "movef.c"
-
-					settings->name = (char*)realloc(settings->name, (strlen(argv[i])+1)*sizeof(char));
-					strcpy(settings->name, argv[i]);
-					
-					printf("\x1b[32mName\x1b[39m         ┃ %s\n", settings->name);
-
-					break;
+					goto o_name;
 				case 'o':
-					#include "movef.c"
-
-					settings->objDir = (char*)realloc(settings->objDir, (strlen(argv[i])+1)*sizeof(char));
-					strcpy(settings->objDir, argv[i]);
-					
-					printf("\x1b[32mObject Path\x1b[39m  ┃ %s\n", settings->objDir);
-
-					break;
+					goto o_object;
 				case 'b':
-					#include "movef.c"
-
-					settings->binDir = (char*)realloc(settings->binDir, (strlen(argv[i])+1)*sizeof(char));
-					strcpy(settings->binDir, argv[i]);
-					
-					printf("\x1b[32mBinary Path\x1b[39m  ┃ %s\n", settings->binDir);
-
-					break;
+					goto o_binary;
 				case 'f':
-					#include "movef.c"
-
-					saPush(&settings->flags, argv[i]);
-
-					printf("\x1b[32mFlag \x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
-
-					break;
+					goto o_flag;
 				case 'p':
-					#include "movef.c"
-
-					saPush(&settings->libDirs, argv[i]);
-
-					printf("\x1b[32mLibrary Path\x1b[39m ┃ %s\n", settings->libDirs.items[settings->libDirs.size-1]);
-
-					break;
+					goto o_path;
 				default:
 					goto error;
 			}
@@ -219,6 +111,101 @@ int getSettings (
 		}
 
 		continue;
+
+		o_include:
+			#include "movef.c"
+
+			saPush(&settings->incDirs, argv[i]);
+
+			printf("\x1b[32mInclude Path\x1b[39m ┃ %s\n", settings->incDirs.items[settings->incDirs.size-1]);
+
+			continue;
+
+		o_source:
+			#include "movef.c"
+
+			saPush(&settings->srcDirs, argv[i]);
+
+			printf("\x1b[32mSource Path\x1b[39m  ┃ %s\n", settings->srcDirs.items[settings->srcDirs.size-1]);
+
+			continue;
+
+		o_binary:
+			#include "movef.c"
+
+			settings->binDir = (char*)realloc(settings->binDir, (strlen(argv[i])+1)*sizeof(char));
+			strcpy(settings->binDir, argv[i]);
+			
+			printf("\x1b[32mBinary Path\x1b[39m  ┃ %s\n", settings->binDir);
+
+			continue;
+
+		o_object:
+			#include "movef.c"
+
+			settings->objDir = (char*)realloc(settings->objDir, (strlen(argv[i])+1)*sizeof(char));
+			strcpy(settings->objDir, argv[i]);
+			
+			printf("\x1b[32mObject Path\x1b[39m  ┃ %s\n", settings->objDir);
+
+			continue;
+
+		o_library:
+			#include "movef.c"
+
+			saPush(&settings->libs, argv[i]);
+
+			printf("\x1b[32mLibrary\x1b[39m      ┃ %s\n", settings->libs.items[settings->libs.size-1]);
+
+			continue;
+
+		o_path:
+			#include "movef.c"
+
+			saPush(&settings->libDirs, argv[i]);
+
+			printf("\x1b[32mLibrary Path\x1b[39m ┃ %s\n", settings->libDirs.items[settings->libDirs.size-1]);
+
+			continue;
+
+		o_flag:
+			#include "movef.c"
+
+			saPush(&settings->flags, argv[i]);
+
+			printf("\x1b[32mFlag \x1b[39m        ┃ %s\n", settings->flags.items[settings->flags.size-1]);
+
+			continue;
+
+		o_name:
+			#include "movef.c"
+
+			settings->name = (char*)realloc(settings->name, (strlen(argv[i])+1)*sizeof(char));
+			strcpy(settings->name, argv[i]);
+			
+			printf("\x1b[32mName\x1b[39m         ┃ %s\n", settings->name);
+
+			continue;
+
+		o_version:
+			#include "movef.c"
+					
+			settings->version = (char*)realloc(settings->version, (strlen(argv[i])+1)*sizeof(char));
+			strcpy(settings->version, argv[i]);
+			
+			printf("\x1b[32mVersion\x1b[39m      ┃ %s\n", settings->version);
+
+			continue;
+
+		o_makefile:
+			#include "movef.c"
+					
+			settings->makefile = (char*)realloc(settings->makefile, (strlen(argv[i])+1)*sizeof(char));
+			strcpy(settings->makefile, argv[i]);
+			
+			printf("\x1b[32mMakeFile\x1b[39m     ┃ %s\n", settings->makefile);
+
+			continue;
 
 		error:
 			printf("\x1b[31mERROR\x1b[39m        ┃ Unknown option \x1b[32m%s\n", argv[i]);
