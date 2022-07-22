@@ -75,6 +75,10 @@ ${OBJ}/ydoBneg.o: ./src/genBody.c ./inc/structures.h ./inc/functions.h
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/genBody.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/ydoBneg.o ./src/genBody.c
 
+${OBJ}/gifnoCesu.o: ./src/useConfig.c ./inc/structures.h ./inc/functions.h 
+	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/useConfig.c
+	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/gifnoCesu.o ./src/useConfig.c
+
 ${OBJ}/seliFnepo.o: ./src/openFiles.c ./inc/structures.h ./inc/functions.h 
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/openFiles.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/seliFnepo.o ./src/openFiles.c
@@ -87,5 +91,5 @@ ${OBJ}/seliFteg.o: ./src/getFiles.c ./inc/functions.h
 	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src/getFiles.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/seliFteg.o ./src/getFiles.c
 
-${OUT}: ${OBJ}/skcehCnur.o ${OBJ}/daeHneg.o ${OBJ}/eliFedulcni.o ${OBJ}/sgnitteSteg.o ${OBJ}/ydoBneg.o ${OBJ}/seliFnepo.o ${OBJ}/niam.o ${OBJ}/seliFteg.o
-	${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${OUT} ${OBJ}/skcehCnur.o ${OBJ}/daeHneg.o ${OBJ}/eliFedulcni.o ${OBJ}/sgnitteSteg.o ${OBJ}/ydoBneg.o ${OBJ}/seliFnepo.o ${OBJ}/niam.o ${OBJ}/seliFteg.o ${LIBS}
+${OUT}: ${OBJ}/skcehCnur.o ${OBJ}/daeHneg.o ${OBJ}/eliFedulcni.o ${OBJ}/sgnitteSteg.o ${OBJ}/ydoBneg.o ${OBJ}/gifnoCesu.o ${OBJ}/seliFnepo.o ${OBJ}/niam.o ${OBJ}/seliFteg.o
+	${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${OUT} ${OBJ}/skcehCnur.o ${OBJ}/daeHneg.o ${OBJ}/eliFedulcni.o ${OBJ}/sgnitteSteg.o ${OBJ}/ydoBneg.o ${OBJ}/gifnoCesu.o ${OBJ}/seliFnepo.o ${OBJ}/niam.o ${OBJ}/seliFteg.o ${LIBS}

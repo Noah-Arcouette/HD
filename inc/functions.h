@@ -11,5 +11,6 @@ int    openFiles     (struct hd_settings, struct hd_file**);
 int    genHead       (char**, struct hd_settings);
 char * includeSearch (char*, struct hd_settings);
 int    genBody       (char**, struct hd_settings, struct hd_file*);
+int    useConfig     (char*, struct hd_settings*);
 
 #endif

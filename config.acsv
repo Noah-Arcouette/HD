@@ -1,0 +1,8 @@
+include: ./inc/ ./snp/;
+source: ./src/;
+library: msap macsv;
+path: ;
+flag: -g -Wall -Wextra -O2 -std=gnu18 -D_GNU_SOURCE;
+name: hd;
+version: 1.3;
+makefile: makefile.test;

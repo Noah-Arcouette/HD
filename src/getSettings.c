@@ -25,6 +25,10 @@ int getSettings (
 			{
 				goto o_version;	
 			}
+			else if (!strcmp(argv[i], "--config"))
+			{
+				goto o_config;
+			}
 			else if (!strcmp(argv[i], "--makefile"))
 			{
 				goto o_makefile;
@@ -75,13 +79,12 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
+				case 'c':
+					goto o_config;
 				case 'h':
 					goto help;
-					break;
 				case 'm':
 					goto o_makefile;
-
-					break;
 				case 'i':
 					goto o_include;
 				case 's':
@@ -111,6 +114,20 @@ int getSettings (
 		}
 
 		continue;
+
+		o_config:
+			#include "movef.c"
+
+			printf("\x1b[35mConfig      \x1b[39m ┃ %s\n", argv[i]);
+
+			if (useConfig(argv[i], settings))
+			{
+				return 1;
+			}
+
+			printf("\x1b[35mCommand Line \x1b[39m┃\n");
+
+			continue;
 
 		o_include:
 			#include "movef.c"
