@@ -112,10 +112,28 @@ int useConfig (char *file, struct hd_settings *s)
 			config.vals[hold]);
 	}
 
+	if ((hold = acsvSearch(config, "name")) >= 0)
+	{
+		s->name = (char*)realloc(s->name, sizeof(char) * (strlen(config.vals[hold])+1));
+		strcpy(s->name, config.vals[hold]);
+
+		printf("\x1b[1;32mName         \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
+	if ((hold = acsvSearch(config, "version")) >= 0)
+	{
+		s->version = (char*)realloc(s->version, sizeof(char) * (strlen(config.vals[hold])+1));
+		strcpy(s->version, config.vals[hold]);
+
+		printf("\x1b[1;32mVersion      \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
 /*
-	name: hd;
-	version: 1.3;
 	makefile: makefile.test;
+	binary: ./bin/;
+	object: ./obj/;
 */
 
 	acsvFree(config);
