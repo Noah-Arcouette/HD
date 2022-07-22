@@ -130,10 +130,26 @@ int useConfig (char *file, struct hd_settings *s)
 			config.vals[hold]);
 	}
 
+	if ((hold = acsvSearch(config, "binary")) >= 0)
+	{
+		s->binDir = (char*)realloc(s->binDir, sizeof(char) * (strlen(config.vals[hold])+1));
+		strcpy(s->binDir, config.vals[hold]);
+
+		printf("\x1b[1;32mBinary Path  \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
+	if ((hold = acsvSearch(config, "object")) >= 0)
+	{
+		s->objDir = (char*)realloc(s->objDir, sizeof(char) * (strlen(config.vals[hold])+1));
+		strcpy(s->objDir, config.vals[hold]);
+
+		printf("\x1b[1;32mObject Path  \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
 /*
 	makefile: makefile.test;
-	binary: ./bin/;
-	object: ./obj/;
 */
 
 	acsvFree(config);
