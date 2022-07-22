@@ -38,6 +38,7 @@ includes and sources need to be in their own directories
 
 --help, -h     : print help then exit
 
+--config, -c   : use config file ***See ./config.acsv for example***
 
 # Install
 

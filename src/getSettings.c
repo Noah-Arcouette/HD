@@ -242,6 +242,7 @@ int getSettings (
 \x1b[32m━━version, ━v      \x1b[39m┃ Set project / binary version\n\
 \x1b[32m━━makefile, ━m     \x1b[39m┃ Set makefile / output name\n\
 \x1b[32m━━help, ━h         \x1b[39m┃ Show help message\n\
+\x1b[32m━━config, ━c       \x1b[39m┃ Use configuration file\n\
 ━━━━━━━━━━━━━┳━━━━━┛\
 ");
 
