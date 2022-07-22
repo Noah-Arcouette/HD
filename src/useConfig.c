@@ -97,8 +97,22 @@ int useConfig (char *file, struct hd_settings *s)
 			config.vals[hold]);
 	}
 
+	if ((hold = acsvSearch(config, "flag")) >= 0)
+	{
+		saHold = saSplit(config.vals[hold], ' ');
+
+		for (i = 0; i<saHold.size; i++)
+		{
+			saPush(&s->flags, saHold.items[i]);
+		}
+
+		saFree(saHold);
+
+		printf("\x1b[1;32mFlag         \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
 /*
-	flag: -g -Wall -Wextra -O2 -std=gnu18 -D_GNU_SOURCE;
 	name: hd;
 	version: 1.3;
 	makefile: makefile.test;
