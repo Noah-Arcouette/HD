@@ -9,7 +9,14 @@ an error occurs.
 HD generates simple MakeFiles and sadly cant build libraries
 or installation / uninstallation scripts, *yet*.
 
-***Warning HD requires static libraries that aren't released yet, so you will have to use the prebuilt binary***
+
+# Requires
+
+ - [(GNU) LibC](https://www.gnu.org/software/libc/)
+ - [(MAKE) (GNU) CC](https://gcc.gnu.org/)
+ - [(MAKE) LibMSAP](https://github.com/Noah-Arcouette/LibMSAP)
+ - [(MAKE) LibMACSV](https://github.com/Noah-Arcouette/LibMACSV)
+ - [(MAKE) (GNU) Make](https://www.gnu.org/software/make/)
 
 
 # Help
