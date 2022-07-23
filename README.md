@@ -40,6 +40,13 @@ includes and sources need to be in their own directories
 
 --config, -c   : use config file ***See ./config.acsv for example***
 
+--test, -T     : add test file ***Will not be compiled into 
+a library, if set.***
+
+--dynamic, -D  : set HD to build a dynamic library
+
+--static, -S   : set HD to build a static library
+
 # Install
 
 `$ ./install <Extra CFLAGS>`
