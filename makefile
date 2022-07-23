@@ -10,7 +10,7 @@ BIN     = ./bin/
 
 #binary info
 NAME    = hd
-VERSION = 1.3
+VERSION = 1.4
 # presets
 OUT = ${BIN}/${NAME}
 # test out ${NAME}-${VER}_test
@@ -19,12 +19,12 @@ CC  = cc
 
 # build test
 all: message ${OUT}
-	printf "\x1b[1;32m━━━SUCCESS━━━┛ Created Binary\x1b[0m\n"
+	printf "\x1b[1;32m━━━SUCCESS━━━┛ Test Build\x1b[0m\n"
 
 # build release
 build: message clean_part ${OUT}
 	strip -s ${OUT}
-	printf "\x1b[1;32m━━━SUCCESS━━━┛ \x1b[39mRelease build\x1b[0m\n"
+	printf "\x1b[1;32m━━━SUCCESS━━━┛ \x1b[39mRelease Build\x1b[0m\n"
 
 # clean section
 clean_part:
@@ -40,7 +40,7 @@ clean: message clean_part
 gen: message clean_part
 	printf "\x1b[1;39m━━━━━━━━━━━━━┛\x1b[0m\n\n"
 
-	hd -n hd -v 1.3 -m makefile -b ./bin/ -o ./obj/ -s ./src/ -i ./inc/ -i ./snp/ -l msap -l macsv -f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 -f -D_GNU_SOURCE
+	hd -n hd -v 1.4 -m makefile -b ./bin/ -o ./obj/ -s ./src/ -i ./inc/ -i ./snp/ -l msap -l macsv -f -g -f -Wall -f -Wextra -f -O2 -f -std=gnu18 -f -D_GNU_SOURCE
 	printf "\x1b[1;32m\n━━━━━━━━━━━━━┓\nSUCCESS      ┃  \x1b[39mCreate new\x1b[35m MakeFile \x1b[32m\n━━━━━━━━━━━━━┛\x1b[0m\n"
 
 # print settings
