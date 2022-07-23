@@ -150,7 +150,9 @@ gen: message clean_part\n\
 		strlen(s.version) + 4 +
 		strlen(s.binDir) + 4 +
 		strlen(s.objDir) + 4 +
-		strlen(s.makefile) + 4;
+		strlen(s.makefile) + 4 +
+		4 +
+		4;
 
 	*makefile = (char*)realloc(*makefile, size * sizeof(char));
 	strcat(*makefile, "-n ");
@@ -167,6 +169,15 @@ gen: message clean_part\n\
 
 	strcat(*makefile, " -o ");
 	strcat(*makefile, s.objDir);
+
+	if (s.mode == HD_MODE_STATIC)
+	{
+		strcat(*makefile, " -S ");
+	}
+	else if (s.mode == HD_MODE_DYNAMIC)
+	{
+		strcat(*makefile, " -D ");
+	}
 
 	for (i = 0; i<s.srcDirs.size; i++)
 	{
@@ -211,6 +222,15 @@ gen: message clean_part\n\
 		
 		strcat(*makefile, " -f ");
 		strcat(*makefile, s.flags.items[i]);
+	}
+
+	for (i = 0; i<s.testing.size; i++)
+	{
+		size += strlen(s.testing.items[i]) + 4;
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+		
+		strcat(*makefile, " -T ");
+		strcat(*makefile, s.testing.items[i]);
 	}
 
 	strcat(*makefile, "\n\
