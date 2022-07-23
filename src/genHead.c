@@ -91,6 +91,15 @@ int genHead (char **makefile, struct hd_settings s)
 	strcat(*makefile, "\nVERSION = ");
 	strcat(*makefile, s.version);
 
+	if (s.mode == HD_MODE_STATIC)
+	{
+		strcat(*makefile, "\nLIBOUT = ${BIN}/${NAME}.a\n\n");
+	}
+	else if (s.mode == HD_MODE_DYNAMIC)
+	{
+		strcat(*makefile, "\nLIBOUT = ${BIN}/${NAME}.so\n\n");
+	}
+
 	// presets
 	strcat(*makefile, "\
 \n\
@@ -102,14 +111,24 @@ CC  = cc\n\
 \n\
 # build test\n\
 all: message ${OUT}\n\
-	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Created Binary\\x1b[0m\\n\"\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ Test Build\\x1b[0m\\n\"\n\
 \n\
-# build release\n\
-build: message clean_part ${OUT}\n\
+# build release\n");
+
+	if (s.mode == HD_MODE_APP)
+	{
+		strcat(*makefile, "build: message clean_part ${OUT}\n\
 	strip -s ${OUT}\n\
-	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ \\x1b[39mRelease build\\x1b[0m\\n\"\n\
-\n\
-# clean section\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ \\x1b[39mRelease Build\\x1b[0m\\n\"\n");
+	}
+	else
+	{
+		strcat(*makefile, "build: message clean_part ${LIBOUT}\n\
+	printf \"\\x1b[1;32m━━━SUCCESS━━━┛ \\x1b[39mRelease Build\\x1b[0m\\n\"\n");
+	}
+
+	strcat(*makefile, "\
+\n# clean section\n\
 clean_part:\n\
 	rm ${BIN}/* ${OBJ}/* -f\n\
 	printf \"\\x1b[1;35m━━━CLEANED━━━┫\\x1b[0m\\n\"\n\

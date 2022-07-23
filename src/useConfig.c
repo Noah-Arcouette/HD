@@ -157,6 +157,34 @@ int useConfig (char *file, struct hd_settings *s)
 			config.vals[hold]);
 	}
 
+	if ((hold = acsvSearch(config, "mode")) >= 0)
+	{
+		if (!strcmp(config.vals[hold], "app") || !strcmp(config.vals[hold], "application"))
+		{
+			s->mode = HD_MODE_APP;
+
+			printf("\x1b[1;32mMode         \x1b[39m┃ Application\n");
+		}
+		else if (!strcmp(config.vals[hold], "dynamic"))
+		{
+			s->mode = HD_MODE_DYNAMIC;
+
+			printf("\x1b[1;32mMode         \x1b[39m┃ Dynamic Library\n");
+		}
+		else if (!strcmp(config.vals[hold], "static"))
+		{
+			s->mode = HD_MODE_STATIC;
+
+			printf("\x1b[1;32mMode         \x1b[39m┃ Static Library\n");
+		}
+		else
+		{
+			printf("\x1b[1;31mERROR        \x1b[39m┃ Unknown mode \x1b[35m%s\n", config.vals[hold]);
+
+			return 1;
+		}
+	}
+
 	acsvFree(config);
 
 	return 0;

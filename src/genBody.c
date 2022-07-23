@@ -85,7 +85,6 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 
 		puts("\x1b[39m             ┃");
 	}
-	free(iso);
 
 	if (isos.size > 0)
 	{
@@ -105,6 +104,60 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 		free(isosS);
 	}
 
+	if (s.mode != HD_MODE_APP)
+	{
+		register ssize_t *ignored;
+		register size_t   i;
+
+		for (i = 0; i<s.testing.size; i++)
+		{
+			getIso(s.testing.items[i], &iso);
+			ignored = saSearch(isos, iso, 1);
+
+			if (*ignored >= 0)
+			{
+				saRemove(&isos, *ignored);
+			}
+
+			free(ignored);
+		}
+
+		char *isosS = saJoin(isos, ' ');
+
+		// add libout
+		size += 13 + (strlen(isosS)*2);
+
+		if (s.mode == HD_MODE_STATIC)
+		{
+			size += 19;
+		}
+		else
+		{
+			size += 68;
+		}
+
+		*makefile = (char*)realloc(*makefile, size * sizeof(char));
+
+		strcat(*makefile, "\n${LIBOUT}: ");
+		strcat(*makefile, isosS);
+
+		if (s.mode == HD_MODE_STATIC)
+		{
+			strcat(*makefile, "\n\tar rcs ${LIBOUT} ");
+			strcat(*makefile, isosS);
+			strcat(*makefile, "\n");
+		}
+		else
+		{
+			strcat(*makefile, "\n\t${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${LIBOUT} --shared ");	
+			strcat(*makefile, isosS);
+			strcat(*makefile, " ${LIBS}\n");
+		}
+
+		free(isosS);
+	}
+
+	free(iso);
 	saFree(isos);
 
 	return 0;

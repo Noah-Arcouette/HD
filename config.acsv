@@ -8,3 +8,4 @@ version: 1.3;
 makefile: makefile;
 binary: ./bin/;
 object: ./obj/;
+mode: application;

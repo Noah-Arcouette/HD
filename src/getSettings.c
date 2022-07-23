@@ -16,6 +16,8 @@ int getSettings (
 {	
 	printf("\x1b[1m");
 
+	settings->mode = HD_MODE_APP;
+
 	for (register int i = 1; i<argc; i++)
 	{
 		// string parameter
@@ -24,6 +26,14 @@ int getSettings (
 			if (!strcmp(argv[i], "--version"))
 			{
 				goto o_version;	
+			}
+			else if (!strcmp(argv[i], "--dynamic"))
+			{
+				goto o_dynamic;
+			}
+			else if (!strcmp(argv[i], "--test"))
+			{
+				goto o_test;
 			}
 			else if (!strcmp(argv[i], "--config"))
 			{
@@ -69,6 +79,10 @@ int getSettings (
 			{
 				goto help;
 			}
+			else if (!strcmp(argv[i], "--static"))
+			{
+				goto o_static;
+			}
 			else
 			{
 				goto error;
@@ -79,6 +93,8 @@ int getSettings (
 		{
 			switch (argv[i][1])
 			{
+				case 'T':
+					goto o_test;
 				case 'c':
 					goto o_config;
 				case 'h':
@@ -103,6 +119,10 @@ int getSettings (
 					goto o_flag;
 				case 'p':
 					goto o_path;
+				case 'D':
+					goto o_dynamic;
+				case 'S':
+					goto o_static;
 				default:
 					goto error;
 			}
@@ -114,6 +134,29 @@ int getSettings (
 		}
 
 		continue;
+
+		o_dynamic:
+			settings->mode = HD_MODE_DYNAMIC;
+
+			printf("\x1b[32mMode         \x1b[39m┃ Dynamic Library\n");
+
+			continue;
+
+		o_static:
+			settings->mode = HD_MODE_STATIC;
+
+			printf("\x1b[32mMode         \x1b[39m┃ Static Library\n");
+
+			continue;
+
+		o_test:
+			#include "movef.c"
+
+			saPush(&settings->testing, argv[i]);
+
+			printf("\x1b[32mTest File    \x1b[39m┃ %s\n", settings->testing.items[settings->testing.size-1]);
+
+			continue;
 
 		o_config:
 			#include "movef.c"
@@ -243,6 +286,9 @@ int getSettings (
 \x1b[32m━━makefile, ━m     \x1b[39m┃ Set makefile / output name\n\
 \x1b[32m━━help, ━h         \x1b[39m┃ Show help message\n\
 \x1b[32m━━config, ━c       \x1b[39m┃ Use configuration file\n\
+\x1b[32m━━test, ━T         \x1b[39m┃ Add test file, full path of file. Will not be compiled into a library, if set\n\
+\x1b[32m━━dynamic, ━D      \x1b[39m┃ Set HD to build a dynamic library\n\
+\x1b[32m━━static, ━S       \x1b[39m┃ Set HD to build a static library\n\
 ━━━━━━━━━━━━━┳━━━━━┛\
 ");
 
