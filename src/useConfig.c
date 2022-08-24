@@ -112,6 +112,21 @@ int useConfig (char *file, struct hd_settings *s)
 			config.vals[hold]);
 	}
 
+	if ((hold = acsvSearch(config, "testing")) >= 0)
+	{
+		saHold = saSplit(config.vals[hold], ' ');
+
+		for (i = 0; i<saHold.size; i++)
+		{
+			saPush(&s->testing, saHold.items[i]);
+		}
+
+		saFree(saHold);
+
+		printf("\x1b[1;32mTest File    \x1b[39m┃ %s\n", 
+			config.vals[hold]);
+	}
+
 	if ((hold = acsvSearch(config, "name")) >= 0)
 	{
 		s->name = (char*)realloc(s->name, sizeof(char) * (strlen(config.vals[hold])+1));
