@@ -6,10 +6,6 @@ file for `#include`s and generates a MakeFile.
 HD tells you exactly what it's doing and what happened if
 an error occurs.
 
-HD generates simple MakeFiles and sadly cant build libraries
-or installation / uninstallation scripts, *yet*.
-
-
 # Requires
 
  - [(GNU) LibC](https://www.gnu.org/software/libc/)
