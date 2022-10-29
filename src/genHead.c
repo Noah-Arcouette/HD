@@ -99,6 +99,10 @@ int genHead (char **makefile, struct hd_settings s)
 	{
 		strcat(*makefile, "\nLIBOUT = ${BIN}/${NAME}.so\n\n");
 	}
+	else if (s.mode == HD_MODE_LIBRARY)
+	{
+		strcat(*makefile, "\nLIBOUT = ${BIN}/${NAME}-lib\n\n");
+	}
 
 	// presets
 	strcat(*makefile, "\
@@ -177,6 +181,10 @@ gen: message clean_part\n\
 	else if (s.mode == HD_MODE_DYNAMIC)
 	{
 		strcat(*makefile, " -D ");
+	}
+	else if (s.mode == HD_MODE_LIBRARY)
+	{
+		strcat(*makefile, " -L ");
 	}
 
 	for (i = 0; i<s.srcDirs.size; i++)

@@ -131,9 +131,13 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 		{
 			size += 19;
 		}
-		else
+		else if (s.mode == HD_MODE_DYNAMIC)
 		{
 			size += 68;
+		}
+		else
+		{
+			size += 100;
 		}
 
 		*makefile = (char*)realloc(*makefile, size * sizeof(char));
@@ -147,11 +151,21 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 			strcat(*makefile, isosS);
 			strcat(*makefile, "\n");
 		}
-		else
+		else if (s.mode == HD_MODE_DYNAMIC)
 		{
 			strcat(*makefile, "\n\t${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${LIBOUT} --shared ");	
 			strcat(*makefile, isosS);
 			strcat(*makefile, " ${LIBS}\n");
+		}
+		else
+		{
+			strcat(*makefile, "\n\t${CC} ${CFLAGS} ${DEFFLAGS} ${LIB} -o ${OUT}.so --shared ");	
+			strcat(*makefile, isosS);
+			strcat(*makefile, " ${LIBS}\n");
+
+			strcat(*makefile, "\n\tar rcs ${OUT}.a ");
+			strcat(*makefile, isosS);
+			strcat(*makefile, "\n");
 		}
 
 		free(isosS);

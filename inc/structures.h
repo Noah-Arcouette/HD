@@ -3,9 +3,10 @@
 
 #include <msap.h>
 
-#define HD_MODE_APP     0b01
-#define HD_MODE_STATIC  0b10
-#define HD_MODE_DYNAMIC 0b11
+#define HD_MODE_APP     0b001
+#define HD_MODE_STATIC  0b010
+#define HD_MODE_DYNAMIC 0b011
+#define HD_MODE_LIBRARY 0b100 // both libraries
 
 struct hd_settings
 {
@@ -23,7 +24,7 @@ struct hd_settings
 	char *makefile; // set makefile / output file name
 
 	sa testing; // testing files
-	int mode:4; // build mode
+	int mode:5; // build mode
 };
 
 struct hd_file

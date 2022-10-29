@@ -83,6 +83,10 @@ int getSettings (
 			{
 				goto o_static;
 			}
+			else if (!strcmp(argv[i], "--generic"))
+			{
+				goto o_generic_library;
+			}
 			else
 			{
 				goto error;
@@ -123,6 +127,8 @@ int getSettings (
 					goto o_dynamic;
 				case 'S':
 					goto o_static;
+				case 'L':
+					goto o_generic_library;
 				default:
 					goto error;
 			}
@@ -146,6 +152,13 @@ int getSettings (
 			settings->mode = HD_MODE_STATIC;
 
 			printf("\x1b[32mMode         \x1b[39m┃ Static Library\n");
+
+			continue;
+
+		o_generic_library:
+			settings->mode = HD_MODE_LIBRARY;
+
+			printf("\x1b[32mMode         \x1b[39m┃ Generic Library\n");
 
 			continue;
 
@@ -289,6 +302,7 @@ int getSettings (
 \x1b[32m━━test, ━T         \x1b[39m┃ Add test file, full path of file. Will not be compiled into a library, if set\n\
 \x1b[32m━━dynamic, ━D      \x1b[39m┃ Set HD to build a dynamic library\n\
 \x1b[32m━━static, ━S       \x1b[39m┃ Set HD to build a static library\n\
+\x1b[32m━━generic, ━L      \x1b[39m┃ Set HD to build a generic library\n\
 ━━━━━━━━━━━━━┳━━━━━┛\
 ");
 

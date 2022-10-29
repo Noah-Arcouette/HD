@@ -50,6 +50,8 @@ a library, if set.***
 
 --static, -S   : set HD to build a static library
 
+--generic, -L  : set HD to build a generic library ( both static and dynamic )
+
 # Install
 
 `$ ./install <Extra CFLAGS>`

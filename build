@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VER=1.4
+VER=1.5
 
 ./mkinfo ${VER}
 
@@ -18,5 +18,5 @@ then
 	-i ./snp \
 	-m makefile.test \
 	-T ./src/main.c \
-	-S
+	-L
 fi

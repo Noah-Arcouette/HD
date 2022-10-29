@@ -192,6 +192,12 @@ int useConfig (char *file, struct hd_settings *s)
 
 			printf("\x1b[1;32mMode         \x1b[39m┃ Static Library\n");
 		}
+		else if (!strcmp(config.vals[hold], "library"))
+		{
+			s->mode = HD_MODE_LIBRARY;
+
+			printf("\x1b[1;32mMode         \x1b[39m┃ Generic Library\n");
+		}
 		else
 		{
 			printf("\x1b[1;31mERROR        \x1b[39m┃ Unknown mode \x1b[35m%s\n", config.vals[hold]);
