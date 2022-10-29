@@ -1,43 +1,57 @@
-Mimik License 1.0
+Mimik License 1.2
 
-Copyright (c) 2022 Noah Arcouette
+Copyright (c) [year] [full name]
 
 Definitions
 ===========
 
-"Software" Refers to any copyrightable work or associated files, licensed
-under this License.
+"Software" refers to any copyrightable data, files, or associated files, licensed
+under This License.
 
-"User" Refers to any person whom obtains this Software or associated files.
+"User" refers to any person who obtains this Software or associated files.
 
-"This License" Refers to the Mimik License 1.0.
+"This License" refers to the Mimik License 1.2.
 
-To "Modify" the Software means to copy from or adapt all or part of the work
+To "Modify" the Software means to copy or adapt all or part of the Software
 in a fashion requiring copyright permission, other than the making of an
-exact copy. The resulting work is called a "modified version" of the
+exact copy. The resulting Software is called a "modified version" of the
 earlier Software or a Software "based on" the earlier Software.
 
-Permissions
-===========
+To "Sublicense" this Software means to add a new license. This new license must comply with the terms of This License.
 
-Permission to Redistribute, Modify, Use, Publish, and/or Sublisence, is granted
+To "Collect" User Information is to save or store any information from the User.
+
+"User Information" is any information specific to the user, including identifying information, system information, and configuration information used by any product.
+
+"Self Replicating" is to create a copy of the Software that will recreate its' self.
+
+Conditions
+==========
+
+Permission to redistribute, Modify, use, publish, and/or Sublicense, is granted
 to any person obtaining this Software, under the following conditions.
 
 1.
-The Software must not be used to Collect, Save, Distribute, and/or make profit
-from User information.
+The Software must not be used to collect, distribute, and/or make profit
+from User Information.
 
 2.
-The modified Software must contain a copy of this license.
+The Modified Software must contain a copy of this license.
 
 3.
-The Software must not be used for malicious use. I.E The Software can not
-be Self Replicating, Corrupting, and/or alter the regular operation of the OS.
+The Software must not be used for malicious use. The Software can not
+be Self Replicating, corrupting, and/or alter the regular operation of the operating system.
 
 4.
 This License does not grant permission to use the trade names, trademarks,
 service marks, or product names.
 
 5.
-This License does not provide Warranty or Liability for the Software.
-The Software is provided "AS IS"
+This License does not provide warranty or liability for the Software.
+The Software is provided "as is"
+
+6. 
+The modified Software must comply with the conditions of This License.
+
+7.
+If the owner of this copyright decides to change the license of the Software you must now comply with the new license, and not This License.
