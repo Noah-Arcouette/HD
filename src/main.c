@@ -30,17 +30,18 @@ The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b
 	settings.incDirs.size  = 0;
 	settings.libDirs.items = NULL;
 	settings.libDirs.size  = 0;
-	settings.libs.items = NULL;
-	settings.libs.size  = 0;
-	settings.flags.items = NULL;
-	settings.flags.size  = 0;
+	settings.libs.items    = NULL;
+	settings.libs.size     = 0;
+	settings.flags.items   = NULL;
+	settings.flags.size    = 0;
+	settings.testing.items = NULL;
+	settings.testing.size  = 0;
 
 	settings.binDir  = NULL;
 	settings.objDir  = NULL;
 
-	settings.name    = NULL;
-	settings.version = NULL;
-
+	settings.name     = NULL;
+	settings.version  = NULL;
 	settings.makefile = NULL;
 
 	printf("\x1b[1;35mSettings\x1b[0m     ┃\n━━━━━━━━━━━━━┫\n");

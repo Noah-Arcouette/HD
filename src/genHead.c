@@ -6,7 +6,7 @@
 
 int genHead (char **makefile, struct hd_settings s)
 {
-	size_t size = 1500;
+	size_t size = 2000;
 	*makefile = (char*)malloc(size * sizeof(char));
 
 	register size_t i;
