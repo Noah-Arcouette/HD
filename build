@@ -19,4 +19,6 @@ then
 	-m makefile.test \
 	-T ./src/main.c \
 	-L
+
+	make build -f makefile.test
 fi

@@ -73,7 +73,7 @@ int genBody (char **makefile, struct hd_settings s, struct hd_file *files)
 		// \tprintf "\x1b[1;32m\n━━━━━━━━━━━━━┓\nFILE         ┃  \x1b[39m %s\x1b[32m\n━━━━━━━━━━━━━┛\x1b[0m\n" <iso>
 		size += 300 + strlen(iso) + (strlen(files[i].path)*2);
 		*makefile = (char*)realloc(*makefile, size * sizeof(char));
-		strcat(*makefile, "\n\tprintf \"\\x1b[1;39m━━━━━━━━━━━━━┫\\n\\x1b[35mFILE         \\x1b[39m┃  \\x1b[39m %s\\x1b[39m\\n━━━━━━━━━━━━━┫\\x1b[0m\\n\" ");
+		strcat(*makefile, "\n\tprintf \"\\x1b[1;35mFile         \\x1b[39m┃  \\x1b[39m %s\\x1b[0m\\n\" ");
 		strcat(*makefile, files[i].path);
 		strcat(*makefile, "\n\t${CC} -c ${DEFFLAGS} ${CFLAGS} -o ");
 		strcat(*makefile, iso);
