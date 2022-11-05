@@ -56,39 +56,39 @@ ifndef VERBOSE
 endif
 
 ${OBJ}/gifnoCesu.o: ./src//useConfig.c ./inc//structures.h ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//useConfig.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//useConfig.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/gifnoCesu.o ./src//useConfig.c
 
 ${OBJ}/eliFedulcni.o: ./src//includeFile.c ./inc//structures.h ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//includeFile.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//includeFile.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/eliFedulcni.o ./src//includeFile.c
 
 ${OBJ}/ydoBneg.o: ./src//genBody.c ./inc//structures.h ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//genBody.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//genBody.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/ydoBneg.o ./src//genBody.c
 
 ${OBJ}/seliFnepo.o: ./src//openFiles.c ./inc//structures.h ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//openFiles.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//openFiles.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/seliFnepo.o ./src//openFiles.c
 
 ${OBJ}/skcehCnur.o: ./src//runChecks.c ./inc//structures.h ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//runChecks.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//runChecks.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/skcehCnur.o ./src//runChecks.c
 
 ${OBJ}/niam.o: ./src//main.c ./inc//info.h ./inc//structures.h ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//main.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//main.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/niam.o ./src//main.c
 
 ${OBJ}/sgnitteSteg.o: ./src//getSettings.c ./inc//structures.h ./inc//functions.h ./snp//movef.c 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//getSettings.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//getSettings.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/sgnitteSteg.o ./src//getSettings.c
 
 ${OBJ}/daeHneg.o: ./src//genHead.c ./inc//structures.h ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//genHead.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//genHead.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/daeHneg.o ./src//genHead.c
 
 ${OBJ}/seliFteg.o: ./src//getFiles.c ./inc//functions.h 
-	printf "\x1b[1;39m━━━━━━━━━━━━━┫\n\x1b[35mFILE         \x1b[39m┃  \x1b[39m %s\x1b[39m\n━━━━━━━━━━━━━┫\x1b[0m\n" ./src//getFiles.c
+	printf "\x1b[1;35mFile         \x1b[39m┃  \x1b[39m %s\x1b[0m\n" ./src//getFiles.c
 	${CC} -c ${DEFFLAGS} ${CFLAGS} -o ${OBJ}/seliFteg.o ./src//getFiles.c
 
 ${OUT}: ${OBJ}/gifnoCesu.o ${OBJ}/eliFedulcni.o ${OBJ}/ydoBneg.o ${OBJ}/seliFnepo.o ${OBJ}/skcehCnur.o ${OBJ}/niam.o ${OBJ}/sgnitteSteg.o ${OBJ}/daeHneg.o ${OBJ}/seliFteg.o

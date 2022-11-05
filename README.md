@@ -54,13 +54,19 @@ a library, if set.***
 
 # Install
 
-`$ ./install <Extra CFLAGS>`
+`# ./install *cflags*`
 
+or 
+
+`$ prefix=*prefix* ./install *cflags*`
 
 # Uninstall
 
-`$ ./uninstall`
+`# ./uninstall`
 
+or
+
+`$ prefix=*prefix* ./uninstall`
 
 # How to use
 

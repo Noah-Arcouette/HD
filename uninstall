@@ -1,7 +1,12 @@
 #!/bin/sh
 
+if ! [ "$prefix" ]
+then 
+	prefix="/usr"
+fi
+
 make clean
 
-sudo rm /usr/bin/hd 
+rm ${prefix}/bin/hd 
 
 printf "\x1b[1;32mUninstalled!\x1b[0m\n"
