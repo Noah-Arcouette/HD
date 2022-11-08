@@ -14,11 +14,11 @@ int main (int argc, char **argv)
 
 	printf(
 "\x1b[1;35mHD\x1b[39m V" VER "-" REV "\n\
-Under the \x1b[32mMimik License 1.0\n\
+Under the \x1b[32mMimik License 1.2\n\
 Copyright (c) 2022 Noah Arcouette\n\
 \x1b[39mThis is free and open source software;\n\
-see the \x1b[32mMimik License 1.0\x1b[39m for copying conditions.\n\
-The \x1b[32mMimik License 1.0\x1b[39m does not provide warranty of any kind.\x1b[0m  ┃\n\
+see the \x1b[32mMimik License 1.2\x1b[39m for copying conditions.\n\
+The \x1b[32mMimik License 1.2\x1b[39m does not provide warranty of any kind.\x1b[0m  ┃\n\
 ━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
 );
 

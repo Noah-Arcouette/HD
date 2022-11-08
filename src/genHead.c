@@ -248,7 +248,7 @@ gen: message clean_part\n\
 message:\n\
 	printf \"\\x1b[1;35m%s \\x1b[39mV%s\\n\" ${NAME} ${VERSION}\n\
 	printf \"\\x1b[1;39mMakefile generated from \\x1b[35mHD\\x1b[39m\\n\"\n\
-	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.0\\n\"\n\
+	printf \"\\x1b[39m ━ \\x1b[1;39mUnder the \\x1b[32mMimik License 1.2\\n\"\n\
 	printf \"\\x1b[39m ━ \\x1b[1;32mCopyright (c) 2022 Noah Arcouette\\x1b[0m  ┃\\n\"\n\
 	printf \"\\x1b[39m━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┛\\n\"\n\
 \n\
